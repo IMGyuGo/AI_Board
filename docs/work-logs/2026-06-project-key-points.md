@@ -12,3 +12,11 @@
 - 프론트엔드는 `front/src/features/*` 단위로 화면과 API 호출을 묶어 기능별 변경 범위를 좁힌다.
 - API 계약은 문서와 테스트로 같이 고정한다. `/api/status`, `/api/me`, `/api/us-economy/dashboard`, `/api/agents/*` 같은 경계가 앱 전체의 연결 지점이다.
 - 중요한 포인트는 "화면이 직접 외부 API나 AI 키를 다루지 않는다"는 점이다. 브라우저는 백엔드 계약을 읽고, 백엔드가 데이터 출처와 인증 경계를 책임진다.
+
+## 2026-06-20 - 경제 데이터 캐시와 출처 관리
+
+- 미국경제 대시보드는 FRED, Korea Eximbank, OpenAI brief를 한 화면에서 다루지만, 숫자와 설명의 책임을 분리한다.
+- FRED 계열 지표는 백엔드 sync 서비스가 가져와 PostgreSQL/Flyway cache table에 저장하고, 프론트는 `/api/us-economy/dashboard`만 읽는다.
+- OpenAI는 metric 값을 만들지 않고, 이미 저장된 지표와 이벤트를 근거로 brief 문장을 생성하는 역할만 맡는다.
+- API 응답은 metric마다 source name, source URL, base date, previous value, change, change percent를 포함해 사용자가 숫자의 출처를 추적할 수 있게 한다.
+- 이 구조의 핵심은 cache-first 읽기다. 외부 API나 OpenAI가 잠시 실패해도 대시보드가 완전히 멈추지 않고, fallback 상태를 명확히 보여준다.
