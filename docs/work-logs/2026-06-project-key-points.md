@@ -20,3 +20,11 @@
 - OpenAI는 metric 값을 만들지 않고, 이미 저장된 지표와 이벤트를 근거로 brief 문장을 생성하는 역할만 맡는다.
 - API 응답은 metric마다 source name, source URL, base date, previous value, change, change percent를 포함해 사용자가 숫자의 출처를 추적할 수 있게 한다.
 - 이 구조의 핵심은 cache-first 읽기다. 외부 API나 OpenAI가 잠시 실패해도 대시보드가 완전히 멈추지 않고, fallback 상태를 명확히 보여준다.
+
+## 2026-06-21 - AI 브리프 근거 정책
+
+- AI 브리프는 대시보드의 해석층이며, 원천 데이터층이 아니다.
+- `OpenAiBriefService`는 저장된 metric과 이벤트를 기반으로 요약, 위험 요인, 한국 영향, 근거 ID를 생성한다.
+- OpenAI 호출 실패 또는 키 누락 상황에서는 `RuleBasedBriefFactory`가 안전한 fallback 문장을 반환하고, 실패 fallback을 generated brief처럼 영구 저장하지 않는다.
+- 다국어 brief도 locale별로 직접 생성하고, 특정 locale 생성이 실패하면 기존의 generated brief를 덮어쓰지 않는다.
+- 중요한 원칙은 "AI 문장은 반드시 검증 가능한 metric/event와 연결되어야 한다"는 것이다. 이 원칙 덕분에 대시보드가 설명형 UI가 되면서도 출처 추적 가능성을 잃지 않는다.
