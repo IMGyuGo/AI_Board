@@ -28,3 +28,11 @@
 - OpenAI 호출 실패 또는 키 누락 상황에서는 `RuleBasedBriefFactory`가 안전한 fallback 문장을 반환하고, 실패 fallback을 generated brief처럼 영구 저장하지 않는다.
 - 다국어 brief도 locale별로 직접 생성하고, 특정 locale 생성이 실패하면 기존의 generated brief를 덮어쓰지 않는다.
 - 중요한 원칙은 "AI 문장은 반드시 검증 가능한 metric/event와 연결되어야 한다"는 것이다. 이 원칙 덕분에 대시보드가 설명형 UI가 되면서도 출처 추적 가능성을 잃지 않는다.
+
+## 2026-06-22 - Agent 워크벤치 경계
+
+- Agent 기능은 프론트 화면, Spring Agent API, Python worker, OpenAI Agents SDK가 순서대로 이어지는 구조다.
+- Spring은 사용자, 세션, run/message/evidence 저장의 기준 시스템이고, Python worker는 실제 Agent 실행과 MCP 도구 연결을 맡는다.
+- 프론트의 Agent 탭은 열리는 순간 자동 생성하지 않고, 사용자가 명시적으로 Agent 생성이나 chat을 실행할 때만 worker 호출로 이어진다.
+- Agent 답변은 `agent_runs`, `agent_messages`, `agent_steps`, `agent_evidence_items`에 저장되어 나중에 어떤 근거와 도구 호출로 답했는지 추적할 수 있다.
+- 이 경계는 프로젝트가 AI 기능을 붙이면서도 운영 데이터와 사용자 권한을 Java 백엔드 안에서 일관되게 관리하게 해준다.
