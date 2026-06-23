@@ -36,3 +36,11 @@
 - 프론트의 Agent 탭은 열리는 순간 자동 생성하지 않고, 사용자가 명시적으로 Agent 생성이나 chat을 실행할 때만 worker 호출로 이어진다.
 - Agent 답변은 `agent_runs`, `agent_messages`, `agent_steps`, `agent_evidence_items`에 저장되어 나중에 어떤 근거와 도구 호출로 답했는지 추적할 수 있다.
 - 이 경계는 프로젝트가 AI 기능을 붙이면서도 운영 데이터와 사용자 권한을 Java 백엔드 안에서 일관되게 관리하게 해준다.
+
+## 2026-06-23 - 토론 RAG 검색 구조
+
+- 게시판은 단순 CRUD에서 경제 토론 피드와 RAG 원천 데이터로 확장되었다.
+- 게시글은 `rag_documents`, `rag_chunks`로 인덱싱되고, embedding이 있으면 pgvector 유사도 검색을 우선 사용한다.
+- Python worker의 `DiscussionRetriever`는 Spring 내부 RAG API를 LangChain 스타일 retriever로 감싸 Agent 도구에서 쓰기 쉽게 만든다.
+- 숨김 처리된 게시글은 사용자 화면과 RAG 검색 모두에서 제외되어, Agent가 삭제/숨김 처리된 커뮤니티 콘텐츠를 근거로 삼지 않게 한다.
+- 이 구조의 의미는 토론 데이터를 "공식 지표"가 아니라 "사용자 작성 맥락"으로 다루는 데 있다. Agent는 관련 토론을 참고할 수 있지만, 경제 지표의 공식 출처와는 구분해서 표시해야 한다.
