@@ -44,3 +44,11 @@
 - Python worker의 `DiscussionRetriever`는 Spring 내부 RAG API를 LangChain 스타일 retriever로 감싸 Agent 도구에서 쓰기 쉽게 만든다.
 - 숨김 처리된 게시글은 사용자 화면과 RAG 검색 모두에서 제외되어, Agent가 삭제/숨김 처리된 커뮤니티 콘텐츠를 근거로 삼지 않게 한다.
 - 이 구조의 의미는 토론 데이터를 "공식 지표"가 아니라 "사용자 작성 맥락"으로 다루는 데 있다. Agent는 관련 토론을 참고할 수 있지만, 경제 지표의 공식 출처와는 구분해서 표시해야 한다.
+
+## 2026-06-24 - 인증과 보호 workspace
+
+- 공개 홈은 계정 없이 읽을 수 있지만, 토론 작성, 개인화, Agent 실행, 알림, 관리자 기능은 인증된 사용자 경계 안에 둔다.
+- 로컬 JWT 인증은 access/refresh token을 HttpOnly cookie로 발급하고, refresh token은 DB에 hash 형태로 저장한 뒤 rotation한다.
+- Google OAuth2 로그인도 같은 현재 사용자 모델로 이어지도록 맞춰 프론트가 인증 방식을 별도로 분기하지 않게 한다.
+- mutating API는 `X-XSRF-TOKEN`을 요구해 cookie 기반 인증에서 생길 수 있는 CSRF 위험을 줄인다.
+- 이 설계의 핵심은 공유 가능한 경제 대시보드와 개인 작업공간을 나누는 것이다. 정보 공개성과 사용자 데이터 보호를 동시에 만족시키는 기준선이다.
