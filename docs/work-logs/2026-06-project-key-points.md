@@ -52,3 +52,11 @@
 - Google OAuth2 로그인도 같은 현재 사용자 모델로 이어지도록 맞춰 프론트가 인증 방식을 별도로 분기하지 않게 한다.
 - mutating API는 `X-XSRF-TOKEN`을 요구해 cookie 기반 인증에서 생길 수 있는 CSRF 위험을 줄인다.
 - 이 설계의 핵심은 공유 가능한 경제 대시보드와 개인 작업공간을 나누는 것이다. 정보 공개성과 사용자 데이터 보호를 동시에 만족시키는 기준선이다.
+
+## 2026-06-26 - 배포와 운영 검증 포인트
+
+- 배포 설계는 GitHub Actions, GitHub OIDC, Amazon ECR, Amazon ECS Fargate, CloudWatch Logs를 기준으로 잡았다.
+- GitHub Actions는 AWS access key를 저장하기보다 OIDC로 배포 역할을 Assume하고, backend Docker image를 ECR에 push한 뒤 ECS service를 새 task definition으로 갱신한다.
+- 운영 문서는 ALB smoke test, `HEALTH_CHECK_URL`, ECS service 안정화 대기, CloudWatch 로그 확인 지점을 함께 다룬다.
+- 로컬 검증은 backend test, frontend lint/build, agent-worker pytest처럼 각 실행 단위별로 나눠 둔다.
+- 이 프로젝트의 배포 핵심은 "자동화가 성공했는지"보다 "실패했을 때 어느 층을 보면 되는지"를 문서화하는 것이다. CI, image, task definition, service, health check를 분리해서 봐야 복구가 빠르다.
