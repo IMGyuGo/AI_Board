@@ -60,3 +60,11 @@
 - 운영 문서는 ALB smoke test, `HEALTH_CHECK_URL`, ECS service 안정화 대기, CloudWatch 로그 확인 지점을 함께 다룬다.
 - 로컬 검증은 backend test, frontend lint/build, agent-worker pytest처럼 각 실행 단위별로 나눠 둔다.
 - 이 프로젝트의 배포 핵심은 "자동화가 성공했는지"보다 "실패했을 때 어느 층을 보면 되는지"를 문서화하는 것이다. CI, image, task definition, service, health check를 분리해서 봐야 복구가 빠르다.
+
+## 2026-06-28 - AI 학습 로드맵과 후속 과제
+
+- `study/study/` 문서는 현재 AI 시스템을 초보자도 따라갈 수 있게 UI, Spring API, Python worker, MCP, RAG, evidence 순서로 풀어내는 학습 경로다.
+- 첫 학습 목표는 "Agent가 답한다"가 아니라 "어떤 파일과 API가 어떤 책임을 갖는지"를 이해하는 것이다.
+- 다음 학습용 기능 후보는 RAG 검색 실험 패널이다. 사용자가 검색어를 넣으면 어떤 chunk가 선택되고 score가 어떻게 보이는지 직접 확인할 수 있다.
+- 이 기능은 REST API 계약, 프론트 상태 관리, embedding, pgvector similarity, source citation, guardrail을 한 번에 익히기 좋다.
+- 장기적으로는 저장된 `agent_steps`와 evidence를 기반으로 Agent 답변 품질을 평가하는 eval 데이터셋을 만들 수 있다. 그러면 프로젝트가 단순 앱을 넘어 AI 기능을 실험하고 검증하는 작업대가 된다.
