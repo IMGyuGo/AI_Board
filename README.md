@@ -294,3 +294,9 @@ ECS 실행 중 서버 업데이트 후 자동 배포와 사용자 테스트 방�
 - Flyway migration `V1__create_board_and_rag_schema.sql`에 게시판 테이블과 RAG 확장용 `rag_documents`, `rag_chunks`, `rag_index_jobs` 테이블을 포함했습니다.
 - `rag_chunks.embedding`은 `pgvector`의 `vector(1536)` 타입을 기준으로 설계했습니다.
 - 학습용 정리는 `study/postgresql-rds-rag.md`, `study/board-crud-api.md`에 있습니다.
+
+## 2026-07-05 - Sanctions And Secondary Effects
+
+- Study focus: Study how economic sanctions work as tools of statecraft and how secondary sanctions can influence firms and governments outside the direct dispute. This matters because sanctions connect finance, trade, security policy, and alliance coordination.
+- Key questions: What makes sanctions effective or ineffective? How do secondary sanctions change incentives for third-party firms and banks? How do states balance coercion, humanitarian risk, and alliance unity?
+- Terms to know: primary sanctions, secondary sanctions, export controls, correspondent banking, compliance risk, sanctions evasion
