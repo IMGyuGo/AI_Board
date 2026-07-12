@@ -277,6 +277,15 @@ ECS 실행 중 서버 업데이트 후 자동 배포와 사용자 테스트 방�
 - [IAM Tag-Based Sandbox Policies](docs/concepts/iam-tag-based-sandbox-policies.md)
 - [Prompt Workflow Hook](docs/prompt-workflow-hook.md)
 
+## 경제지표 학습 기록
+
+### 2026-07-12 - 미국 물가 지표: CPI, Core CPI, PCE
+
+- 학습 목표: CPI와 PCE가 측정하는 범위와 가중치의 차이를 이해하고, 헤드라인·근원 물가를 함께 읽습니다.
+- 핵심 질문: 전월 대비와 전년 대비는 언제 구분해야 하는가? 계절조정 여부와 데이터 개정은 해석을 어떻게 바꾸는가? Fed가 PCE 물가를 중시하는 이유는 무엇인가?
+- 대시보드 적용: 지표 값과 함께 단위, 기준월, 이전치, 출처, 계절조정 여부를 확인하고 AI 요약이 인용한 근거 지표로 연결합니다.
+- 상세 학습 노트: [미국 물가 지표 학습 노트](study/us-economic-indicators-inflation.md)
+
 ## 앞으로의 작업
 
 - 운영용 ALB DNS가 확정되면 `HEALTH_CHECK_URL`에 `/api/status` 같은 확인 URL을 설정합니다.
