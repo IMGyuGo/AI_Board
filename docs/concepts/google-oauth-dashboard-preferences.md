@@ -36,6 +36,12 @@
   `XSRF-TOKEN` cookies as email/password login before redirecting to the frontend.
   This keeps frontend API authentication consistent instead of depending only on
   the Spring OAuth session cookie surviving through CloudFront and ALB.
+- If a Google login uses an email that already belongs to a completed local
+  account, the backend now accepts it as the local account only when Google
+  reports `email_verified=true` and the local account has a password hash. This
+  lets already registered users continue with Google without creating a
+  duplicate `app_users` row, while still blocking unverified or incomplete
+  account collisions.
 - Login-time profile persistence and request-time user lookup are intentionally separated:
   `PersistingOAuth2UserService` refreshes the Google profile during OAuth login, while
   `AppUserService.currentUser()` first reads an existing user and only creates one when
@@ -163,8 +169,9 @@
   to Vite/React instead of Spring Security. The local callback must use backend
   port `8080`.
 - OAuth success writes JWT cookies, but local account and Google account email
-  conflicts are still intentionally blocked until a dedicated account-linking UX
-  is implemented.
+  conflicts are only auto-resolved for completed local accounts when Google
+  proves the same email with `email_verified=true`. A dedicated account-linking
+  UX is still needed for explicit provider management and recovery flows.
 - Do not call profile upsert from read-only service methods such as board feed,
   notifications, preference reads, or Agent catalog reads. PostgreSQL enforces
   read-only transactions and will reject UPDATE statements from those paths.

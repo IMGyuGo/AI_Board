@@ -23,7 +23,8 @@ public class PersistingOAuth2UserService extends DefaultOAuth2UserService {
 					attribute(user, "sub", user.getName()),
 					attribute(user, "email", null),
 					attribute(user, "name", attribute(user, "email", user.getName())),
-					attribute(user, "picture", null));
+					attribute(user, "picture", null),
+					booleanAttribute(user, "email_verified"));
 		}
 		return user;
 	}
@@ -31,5 +32,10 @@ public class PersistingOAuth2UserService extends DefaultOAuth2UserService {
 	private String attribute(OAuth2User user, String name, String fallback) {
 		Object value = user.getAttribute(name);
 		return value == null || value.toString().isBlank() ? fallback : value.toString();
+	}
+
+	private boolean booleanAttribute(OAuth2User user, String name) {
+		Object value = user.getAttribute(name);
+		return Boolean.TRUE.equals(value) || (value != null && "true".equalsIgnoreCase(value.toString()));
 	}
 }

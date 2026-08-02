@@ -45,6 +45,28 @@ public class AppUserService {
 		return applyBootstrapAdminRole(repository.upsert("google", providerUserId, email, displayName, avatarUrl));
 	}
 
+	public AppUser upsertGoogleUser(
+			String providerUserId,
+			String email,
+			String displayName,
+			String avatarUrl,
+			boolean googleEmailVerified) {
+		boolean existingGoogleUser = repository.findByProviderAndProviderUserId("google", providerUserId).isPresent();
+		if (!existingGoogleUser) {
+			var localCredentials = repository.findLocalCredentialsByEmail(email);
+			if (localCredentials.isPresent()) {
+				if (googleEmailVerified && hasText(localCredentials.get().passwordHash())) {
+					return applyBootstrapAdminRole(repository.markEmailVerified(localCredentials.get().user().id()));
+				}
+				throw new OAuth2AuthenticationException(new OAuth2Error(
+						"local_email_exists",
+						"이미 일반 이메일 계정으로 가입된 이메일입니다. 계정 연결 기능은 이후 별도 화면에서 제공됩니다.",
+						null));
+			}
+		}
+		return applyBootstrapAdminRole(repository.upsert("google", providerUserId, email, displayName, avatarUrl));
+	}
+
 	public AppUser findOrCreateLocalUser(String username) {
 		return repository.upsert("local", username, null, username, null);
 	}
@@ -60,9 +82,10 @@ public class AppUserService {
 				String email = attribute(oauth2User, "email", null);
 				String displayName = attribute(oauth2User, "name", attribute(oauth2User, "email", oauth2User.getName()));
 				String avatarUrl = attribute(oauth2User, "picture", null);
+				boolean emailVerified = booleanAttribute(oauth2User, "email_verified");
 				return repository.findByProviderAndProviderUserId("google", providerUserId)
 						.map(this::applyBootstrapAdminRole)
-						.orElseGet(() -> upsertGoogleUser(providerUserId, email, displayName, avatarUrl));
+						.orElseGet(() -> upsertGoogleUser(providerUserId, email, displayName, avatarUrl, emailVerified));
 			}
 		}
 
@@ -147,5 +170,14 @@ public class AppUserService {
 	private String attribute(OAuth2User user, String name, String fallback) {
 		Object value = user.getAttribute(name);
 		return value == null || value.toString().isBlank() ? fallback : value.toString();
+	}
+
+	private boolean booleanAttribute(OAuth2User user, String name) {
+		Object value = user.getAttribute(name);
+		return Boolean.TRUE.equals(value) || (value != null && "true".equalsIgnoreCase(value.toString()));
+	}
+
+	private boolean hasText(String value) {
+		return value != null && !value.isBlank();
 	}
 }

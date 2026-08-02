@@ -105,6 +105,38 @@ class AppUserServiceTests {
 	}
 
 	@Test
+	void currentUserAllowsVerifiedGoogleEmailForCompletedLocalAccount() {
+		jdbcTemplate.update("""
+				INSERT INTO app_users (
+					provider, provider_user_id, email, display_name, avatar_url,
+					nickname, password_hash, roles, email_verified_at
+				) VALUES (
+					'local', 'local@example.com', 'local@example.com', 'local_user', NULL,
+					'local_user', 'encoded-password', 'ROLE_USER', CURRENT_TIMESTAMP
+				)
+				""");
+
+		OAuth2User principal = new DefaultOAuth2User(
+				List.of(new SimpleGrantedAuthority("ROLE_USER")),
+				Map.of(
+						"sub", "google-new-123",
+						"email", "local@example.com",
+						"email_verified", true,
+						"name", "Google Local",
+						"picture", "https://example.com/google.png"),
+				"sub");
+
+		AppUser current = appUserService.currentUser(
+				new OAuth2AuthenticationToken(principal, principal.getAuthorities(), "google"));
+
+		assertThat(current.provider()).isEqualTo("local");
+		assertThat(current.providerUserId()).isEqualTo("local@example.com");
+		assertThat(current.email()).isEqualTo("local@example.com");
+		Integer userCount = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM app_users", Integer.class);
+		assertThat(userCount).isEqualTo(1);
+	}
+
+	@Test
 	void rejectsNewGoogleUserWhenEmailBelongsToLocalAccount() {
 		jdbcTemplate.update("""
 				INSERT INTO app_users (
