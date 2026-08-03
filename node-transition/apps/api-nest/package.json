@@ -1,0 +1,9 @@
+{
+  "name": "@node-transition/api-nest",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@node-transition/contracts": "workspace:*"
+  }
+}

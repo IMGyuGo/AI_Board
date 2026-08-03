@@ -1,0 +1,33 @@
+{
+  "name": "ai-node-transition",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.15.0",
+  "scripts": {
+    "build": "tsc --noEmit -p tsconfig.json",
+    "dev:api": "tsx apps/api-nest/src/main.ts",
+    "d01:compare": "tsx labs/day-01-api-contract/solution/compare-live.ts",
+    "test": "pnpm run test:solution && pnpm run test:app",
+    "test:contracts": "vitest run packages/contracts/test/status-contract.spec.ts",
+    "test:starter": "vitest run labs/day-01-api-contract/test/starter.spec.ts",
+    "test:solution": "vitest run packages/contracts/test/status-contract.spec.ts labs/day-01-api-contract/test/solution.spec.ts",
+    "test:app": "vitest run apps/api-nest/test/status.e2e.spec.ts"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.6",
+    "@nestjs/core": "^11.1.6",
+    "@nestjs/platform-express": "^11.1.6",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^11.1.6",
+    "@types/node": "^22.18.0",
+    "@types/supertest": "^6.0.3",
+    "supertest": "^7.1.4",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}
