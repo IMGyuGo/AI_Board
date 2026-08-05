@@ -1,6 +1,7 @@
 # Dependencies
 node_modules/
 **/node_modules/
+.pnpm-store/
 .m2/
 **/.m2/
 
@@ -65,3 +66,4 @@ desktop.ini
 *.temp
 *.swp
 *.swo
+.understand-anything/.trash-*/
