@@ -1,0 +1,2816 @@
+{
+    "name":  "AI_w15-16",
+    "description":  "Spring Boot 백엔드, Ionic React 클라이언트, Python AI agent-worker를 결합한 AI 기반 커뮤니티·경제정보 서비스입니다. PostgreSQL/pgvector RAG, 인증·보안, 게시판·검색·경제정보 API와 GitHub Actions 기반 배포 구성을 포함합니다. Note: this project has over 100 source files; consider scoping analysis to a subdirectory for faster results.",
+    "languages":  [
+                      "config",
+                      "dockerfile",
+                      "html",
+                      "java",
+                      "javascript",
+                      "json",
+                      "markdown",
+                      "powershell",
+                      "properties",
+                      "python",
+                      "sql",
+                      "typescript",
+                      "unknown",
+                      "xml",
+                      "yaml"
+                  ],
+    "frameworks":  [
+                       "Docker",
+                       "FastAPI",
+                       "Flyway",
+                       "GitHub Actions",
+                       "Ionic React",
+                       "JPA",
+                       "MCP",
+                       "OpenAI Agents SDK",
+                       "PostgreSQL",
+                       "pytest",
+                       "React",
+                       "Spring Boot",
+                       "Spring Data",
+                       "Spring Security",
+                       "Spring Web MVC",
+                       "Vite"
+                   ],
+    "files":  [
+                  {
+                      "path":  ".env.agents.example",
+                      "language":  "config",
+                      "sizeLines":  22,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  ".env.cicd.example",
+                      "language":  "config",
+                      "sizeLines":  27,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  ".env.local.example",
+                      "language":  "config",
+                      "sizeLines":  62,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  ".github/backup/deploy-backend.yml",
+                      "language":  "yaml",
+                      "sizeLines":  107,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  ".github/backup/deploy-frontend.yml",
+                      "language":  "yaml",
+                      "sizeLines":  76,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  ".github/ISSUE_TEMPLATE/bug_report.md",
+                      "language":  "markdown",
+                      "sizeLines":  28,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".github/ISSUE_TEMPLATE/feature_request.md",
+                      "language":  "markdown",
+                      "sizeLines":  21,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".github/PULL_REQUEST_TEMPLATE.md",
+                      "language":  "markdown",
+                      "sizeLines":  22,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".github/workflows/automation.yml",
+                      "language":  "yaml",
+                      "sizeLines":  306,
+                      "fileCategory":  "infra"
+                  },
+                  {
+                      "path":  ".github/workflows/aws-role.yml",
+                      "language":  "yaml",
+                      "sizeLines":  26,
+                      "fileCategory":  "infra"
+                  },
+                  {
+                      "path":  ".github/workflows/ci.yml",
+                      "language":  "yaml",
+                      "sizeLines":  62,
+                      "fileCategory":  "infra"
+                  },
+                  {
+                      "path":  ".understand-anything/.understandignore",
+                      "language":  "unknown",
+                      "sizeLines":  78,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".understand-anything/config.json",
+                      "language":  "json",
+                      "sizeLines":  3,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "怨쇱젣?댁슜.md",
+                      "language":  "markdown",
+                      "sizeLines":  152,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "agent-worker/app/__init__.py",
+                      "language":  "python",
+                      "sizeLines":  1,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "agent-worker/app/discussion_retriever.py",
+                      "language":  "python",
+                      "sizeLines":  93,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "agent-worker/app/guardrails.py",
+                      "language":  "python",
+                      "sizeLines":  50,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "agent-worker/app/main.py",
+                      "language":  "python",
+                      "sizeLines":  59,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "agent-worker/app/mcp_server.py",
+                      "language":  "python",
+                      "sizeLines":  90,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "agent-worker/app/mcp_tools.py",
+                      "language":  "python",
+                      "sizeLines":  272,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "agent-worker/app/schemas.py",
+                      "language":  "python",
+                      "sizeLines":  67,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "agent-worker/app/service.py",
+                      "language":  "python",
+                      "sizeLines":  340,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "agent-worker/Dockerfile",
+                      "language":  "dockerfile",
+                      "sizeLines":  11,
+                      "fileCategory":  "infra"
+                  },
+                  {
+                      "path":  "agent-worker/requirements.txt",
+                      "language":  "txt",
+                      "sizeLines":  7,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "agent-worker/tests/conftest.py",
+                      "language":  "python",
+                      "sizeLines":  4,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "agent-worker/tests/test_agent_worker.py",
+                      "language":  "python",
+                      "sizeLines":  298,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "AGENTS.md",
+                      "language":  "markdown",
+                      "sizeLines":  110,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "backend/.gitattributes",
+                      "language":  "unknown",
+                      "sizeLines":  2,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/.mvn/wrapper/maven-wrapper.properties",
+                      "language":  "properties",
+                      "sizeLines":  3,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "backend/Dockerfile",
+                      "language":  "dockerfile",
+                      "sizeLines":  9,
+                      "fileCategory":  "infra"
+                  },
+                  {
+                      "path":  "backend/mvnw",
+                      "language":  "unknown",
+                      "sizeLines":  295,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/mvnw.cmd",
+                      "language":  "batch",
+                      "sizeLines":  189,
+                      "fileCategory":  "script"
+                  },
+                  {
+                      "path":  "backend/pom.xml",
+                      "language":  "xml",
+                      "sizeLines":  115,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/admin/controller/AdminController.java",
+                      "language":  "java",
+                      "sizeLines":  135,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/admin/dto/AdminDtos.java",
+                      "language":  "java",
+                      "sizeLines":  93,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/admin/repository/AdminAuditRepository.java",
+                      "language":  "java",
+                      "sizeLines":  57,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/admin/service/AdminService.java",
+                      "language":  "java",
+                      "sizeLines":  436,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/agent/client/AgentWorkerClient.java",
+                      "language":  "java",
+                      "sizeLines":  21,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/agent/client/HttpAgentWorkerClient.java",
+                      "language":  "java",
+                      "sizeLines":  77,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/agent/controller/AgentController.java",
+                      "language":  "java",
+                      "sizeLines":  122,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/agent/controller/AgentToolController.java",
+                      "language":  "java",
+                      "sizeLines":  167,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/agent/dto/AgentDtos.java",
+                      "language":  "java",
+                      "sizeLines":  128,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/agent/exception/AgentGuardrailException.java",
+                      "language":  "java",
+                      "sizeLines":  7,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/agent/repository/AgentRunRepository.java",
+                      "language":  "java",
+                      "sizeLines":  419,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/agent/service/AgentService.java",
+                      "language":  "java",
+                      "sizeLines":  659,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/client/CaptchaVerifier.java",
+                      "language":  "java",
+                      "sizeLines":  5,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/client/SmtpVerificationEmailSender.java",
+                      "language":  "java",
+                      "sizeLines":  37,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/client/TurnstileCaptchaVerifier.java",
+                      "language":  "java",
+                      "sizeLines":  66,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/client/VerificationEmailSender.java",
+                      "language":  "java",
+                      "sizeLines":  5,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/controller/AuthController.java",
+                      "language":  "java",
+                      "sizeLines":  215,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/dto/AuthDtos.java",
+                      "language":  "java",
+                      "sizeLines":  47,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/exception/AuthException.java",
+                      "language":  "java",
+                      "sizeLines":  33,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/filter/AdminMfaFilter.java",
+                      "language":  "java",
+                      "sizeLines":  79,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/filter/JwtCookieAuthenticationFilter.java",
+                      "language":  "java",
+                      "sizeLines":  72,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/filter/JwtCsrfFilter.java",
+                      "language":  "java",
+                      "sizeLines":  69,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/handler/OAuth2JwtAuthenticationSuccessHandler.java",
+                      "language":  "java",
+                      "sizeLines":  60,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/repository/AdminMfaRepository.java",
+                      "language":  "java",
+                      "sizeLines":  86,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/repository/AuthRateLimitRepository.java",
+                      "language":  "java",
+                      "sizeLines":  91,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/repository/EmailVerificationTokenRepository.java",
+                      "language":  "java",
+                      "sizeLines":  169,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/repository/RefreshTokenRepository.java",
+                      "language":  "java",
+                      "sizeLines":  81,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/service/AdminMfaCookieService.java",
+                      "language":  "java",
+                      "sizeLines":  120,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/service/AdminMfaService.java",
+                      "language":  "java",
+                      "sizeLines":  170,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/service/AuthCookieService.java",
+                      "language":  "java",
+                      "sizeLines":  55,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/service/AuthRateLimitService.java",
+                      "language":  "java",
+                      "sizeLines":  198,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/service/AuthService.java",
+                      "language":  "java",
+                      "sizeLines":  355,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/service/DataEncryptionService.java",
+                      "language":  "java",
+                      "sizeLines":  68,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/service/JwtService.java",
+                      "language":  "java",
+                      "sizeLines":  168,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/service/TotpService.java",
+                      "language":  "java",
+                      "sizeLines":  104,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/auth/support/TokenHashing.java",
+                      "language":  "java",
+                      "sizeLines":  25,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/BackendApplication.java",
+                      "language":  "java",
+                      "sizeLines":  15,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/board/controller/BoardPostController.java",
+                      "language":  "java",
+                      "sizeLines":  154,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/board/dto/BoardPostDtos.java",
+                      "language":  "java",
+                      "sizeLines":  102,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/board/model/BoardComment.java",
+                      "language":  "java",
+                      "sizeLines":  115,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/board/model/BoardPost.java",
+                      "language":  "java",
+                      "sizeLines":  172,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/board/model/BoardTag.java",
+                      "language":  "java",
+                      "sizeLines":  35,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/board/repository/BoardCommentRepository.java",
+                      "language":  "java",
+                      "sizeLines":  7,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/board/repository/BoardPostRepository.java",
+                      "language":  "java",
+                      "sizeLines":  34,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/board/repository/BoardTagRepository.java",
+                      "language":  "java",
+                      "sizeLines":  16,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/board/service/BoardPostService.java",
+                      "language":  "java",
+                      "sizeLines":  662,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/config/OpenApiConfig.java",
+                      "language":  "java",
+                      "sizeLines":  19,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/config/SecurityConfig.java",
+                      "language":  "java",
+                      "sizeLines":  218,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/client/FredSeriesClient.java",
+                      "language":  "java",
+                      "sizeLines":  80,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/client/KoreaEximExchangeClient.java",
+                      "language":  "java",
+                      "sizeLines":  139,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/controller/UsEconomyDashboardController.java",
+                      "language":  "java",
+                      "sizeLines":  117,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/definition/EconomyMetricDefinitions.java",
+                      "language":  "java",
+                      "sizeLines":  55,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/definition/MetricDefinition.java",
+                      "language":  "java",
+                      "sizeLines":  16,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java",
+                      "language":  "java",
+                      "sizeLines":  108,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomySupplementDtos.java",
+                      "language":  "java",
+                      "sizeLines":  89,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/mapper/FredObservationMapper.java",
+                      "language":  "java",
+                      "sizeLines":  79,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                      "language":  "java",
+                      "sizeLines":  18,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/model/FredObservation.java",
+                      "language":  "java",
+                      "sizeLines":  3,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/repository/EconomySnapshotRepository.java",
+                      "language":  "java",
+                      "sizeLines":  593,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/service/EconomyDashboardService.java",
+                      "language":  "java",
+                      "sizeLines":  143,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/service/EconomyEventSupplementSyncService.java",
+                      "language":  "java",
+                      "sizeLines":  246,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/service/EconomySourceComparisonSyncService.java",
+                      "language":  "java",
+                      "sizeLines":  477,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/service/EconomySupplementService.java",
+                      "language":  "java",
+                      "sizeLines":  635,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/service/EconomySyncService.java",
+                      "language":  "java",
+                      "sizeLines":  151,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/service/EconomyTextCatalog.java",
+                      "language":  "java",
+                      "sizeLines":  325,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/service/KoreaEximExchangeSyncService.java",
+                      "language":  "java",
+                      "sizeLines":  90,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/service/OpenAiBriefService.java",
+                      "language":  "java",
+                      "sizeLines":  155,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/economy/service/RuleBasedBriefFactory.java",
+                      "language":  "java",
+                      "sizeLines":  119,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/i18n/LocaleResolver.java",
+                      "language":  "java",
+                      "sizeLines":  18,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java",
+                      "language":  "java",
+                      "sizeLines":  63,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/rag/dto/RagDtos.java",
+                      "language":  "java",
+                      "sizeLines":  24,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/rag/service/OpenAiEmbeddingService.java",
+                      "language":  "java",
+                      "sizeLines":  73,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/rag/service/RagIndexService.java",
+                      "language":  "java",
+                      "sizeLines":  425,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/search/controller/HomeSearchController.java",
+                      "language":  "java",
+                      "sizeLines":  33,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/search/dto/HomeSearchDtos.java",
+                      "language":  "java",
+                      "sizeLines":  19,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/search/service/HomeSearchService.java",
+                      "language":  "java",
+                      "sizeLines":  178,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/system/controller/StatusController.java",
+                      "language":  "java",
+                      "sizeLines":  21,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/user/controller/CurrentUserController.java",
+                      "language":  "java",
+                      "sizeLines":  42,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/user/controller/DashboardPreferenceController.java",
+                      "language":  "java",
+                      "sizeLines":  31,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/user/dto/UserDtos.java",
+                      "language":  "java",
+                      "sizeLines":  31,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java",
+                      "language":  "java",
+                      "sizeLines":  25,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/user/model/DashboardPreferences.java",
+                      "language":  "java",
+                      "sizeLines":  50,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/user/repository/AppUserRepository.java",
+                      "language":  "java",
+                      "sizeLines":  424,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/user/repository/DashboardPreferenceRepository.java",
+                      "language":  "java",
+                      "sizeLines":  86,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java",
+                      "language":  "java",
+                      "sizeLines":  183,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/user/service/CurrentUserProfileService.java",
+                      "language":  "java",
+                      "sizeLines":  39,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/user/service/DashboardPreferenceService.java",
+                      "language":  "java",
+                      "sizeLines":  67,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/user/service/PersistingOAuth2UserService.java",
+                      "language":  "java",
+                      "sizeLines":  41,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/java/com/junglecamp/backend/web/controller/PageController.java",
+                      "language":  "java",
+                      "sizeLines":  27,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/application-test.properties",
+                      "language":  "properties",
+                      "sizeLines":  31,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/application.properties",
+                      "language":  "properties",
+                      "sizeLines":  57,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V1__create_board_and_rag_schema.sql",
+                      "language":  "sql",
+                      "sizeLines":  73,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V10__add_economy_history_and_source_comparison.sql",
+                      "language":  "sql",
+                      "sizeLines":  49,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V11__seed_ai_discussion_samples.sql",
+                      "language":  "sql",
+                      "sizeLines":  396,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V12__backfill_ai_discussion_sample_posts.sql",
+                      "language":  "sql",
+                      "sizeLines":  320,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V13__add_jwt_auth_and_source_comparison_policy.sql",
+                      "language":  "sql",
+                      "sizeLines":  22,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V14__create_economy_exchange_rates.sql",
+                      "language":  "sql",
+                      "sizeLines":  17,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V15__add_email_verification_and_admin.sql",
+                      "language":  "sql",
+                      "sizeLines":  37,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V16__add_auth_rate_limit_and_admin_mfa.sql",
+                      "language":  "sql",
+                      "sizeLines":  31,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V17__add_signup_consent_and_email_codes.sql",
+                      "language":  "sql",
+                      "sizeLines":  11,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V18__seed_ai_discussion_sample_comments.sql",
+                      "language":  "sql",
+                      "sizeLines":  65,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V19__add_more_inflation_sample_comments.sql",
+                      "language":  "sql",
+                      "sizeLines":  58,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V2__create_economy_cache_schema.sql",
+                      "language":  "sql",
+                      "sizeLines":  60,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V20__add_board_post_deleted_at.sql",
+                      "language":  "sql",
+                      "sizeLines":  5,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V3__create_users_and_dashboard_preferences.sql",
+                      "language":  "sql",
+                      "sizeLines":  24,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V4__create_agent_workbench_schema.sql",
+                      "language":  "sql",
+                      "sizeLines":  40,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V5__extend_agent_mcp_evidence_schema.sql",
+                      "language":  "sql",
+                      "sizeLines":  20,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V6__add_agent_message_level_evidence.sql",
+                      "language":  "sql",
+                      "sizeLines":  15,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V7__add_agent_run_soft_delete.sql",
+                      "language":  "sql",
+                      "sizeLines":  6,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V8__extend_board_community_features.sql",
+                      "language":  "sql",
+                      "sizeLines":  55,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/db/migration/V9__add_locale_to_economy_and_agent_runs.sql",
+                      "language":  "sql",
+                      "sizeLines":  12,
+                      "fileCategory":  "data"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/static/css/auth.css",
+                      "language":  "css",
+                      "sizeLines":  220,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/templates/home.html",
+                      "language":  "html",
+                      "sizeLines":  29,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "backend/src/main/resources/templates/login.html",
+                      "language":  "html",
+                      "sizeLines":  37,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/agent/HttpAgentWorkerClientTests.java",
+                      "language":  "java",
+                      "sizeLines":  96,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/ApiIntegrationTests.java",
+                      "language":  "java",
+                      "sizeLines":  3379,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/auth/client/SmtpVerificationEmailSenderTests.java",
+                      "language":  "java",
+                      "sizeLines":  40,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/auth/handler/OAuth2JwtAuthenticationSuccessHandlerTests.java",
+                      "language":  "java",
+                      "sizeLines":  116,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/BackendApplicationTests.java",
+                      "language":  "java",
+                      "sizeLines":  15,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/board/BoardPostServiceTests.java",
+                      "language":  "java",
+                      "sizeLines":  41,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/economy/EconomySourceComparisonSyncServiceTests.java",
+                      "language":  "java",
+                      "sizeLines":  128,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/economy/FredObservationMapperTests.java",
+                      "language":  "java",
+                      "sizeLines":  83,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/economy/KoreaEximExchangeClientTests.java",
+                      "language":  "java",
+                      "sizeLines":  124,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/economy/service/EconomyDashboardServiceTests.java",
+                      "language":  "java",
+                      "sizeLines":  73,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/economy/service/EconomySyncServiceTests.java",
+                      "language":  "java",
+                      "sizeLines":  248,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/economy/service/OpenAiBriefServiceTests.java",
+                      "language":  "java",
+                      "sizeLines":  70,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/EnvironmentFileConfigTests.java",
+                      "language":  "java",
+                      "sizeLines":  47,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/LoginSecurityTests.java",
+                      "language":  "java",
+                      "sizeLines":  64,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/user/AppUserRepositoryTests.java",
+                      "language":  "java",
+                      "sizeLines":  30,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "backend/src/test/java/com/junglecamp/backend/user/AppUserServiceTests.java",
+                      "language":  "java",
+                      "sizeLines":  162,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "docs/concepts/admin-hidden-content-moderation.md",
+                      "language":  "markdown",
+                      "sizeLines":  60,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/admin-login-mfa-gate.md",
+                      "language":  "markdown",
+                      "sizeLines":  43,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/agent-langchain-discussion-rag.md",
+                      "language":  "markdown",
+                      "sizeLines":  67,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/backend-test-schema-isolation.md",
+                      "language":  "markdown",
+                      "sizeLines":  27,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/board-comment-fetch-join-duplication.md",
+                      "language":  "markdown",
+                      "sizeLines":  27,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/board-notification-detail-modal.md",
+                      "language":  "markdown",
+                      "sizeLines":  41,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/board-post-tombstone-deletion.md",
+                      "language":  "markdown",
+                      "sizeLines":  32,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/board-rag-postgresql.md",
+                      "language":  "markdown",
+                      "sizeLines":  46,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/browser-synced-theme.md",
+                      "language":  "markdown",
+                      "sizeLines":  35,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/cicd-ecs-deployment.md",
+                      "language":  "markdown",
+                      "sizeLines":  42,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/dashboard-board-ui.md",
+                      "language":  "markdown",
+                      "sizeLines":  36,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/domain-layered-package-structure.md",
+                      "language":  "markdown",
+                      "sizeLines":  42,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/economic-discussion-feed.md",
+                      "language":  "markdown",
+                      "sizeLines":  57,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/email-verification-admin-console.md",
+                      "language":  "markdown",
+                      "sizeLines":  183,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/frontend-domain-feature-structure.md",
+                      "language":  "markdown",
+                      "sizeLines":  39,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/frontend-i18n.md",
+                      "language":  "markdown",
+                      "sizeLines":  38,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/google-oauth-dashboard-preferences.md",
+                      "language":  "markdown",
+                      "sizeLines":  180,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/home-aggregate-search.md",
+                      "language":  "markdown",
+                      "sizeLines":  71,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/home-economy-history-tabs.md",
+                      "language":  "markdown",
+                      "sizeLines":  52,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/iam-cost-bomb-guardrail-policies.md",
+                      "language":  "markdown",
+                      "sizeLines":  38,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/iam-tag-based-sandbox-policies.md",
+                      "language":  "markdown",
+                      "sizeLines":  37,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/jwt-local-auth-and-protected-workspaces.md",
+                      "language":  "markdown",
+                      "sizeLines":  43,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/local-api-cors.md",
+                      "language":  "markdown",
+                      "sizeLines":  30,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/local-env-file-loading.md",
+                      "language":  "markdown",
+                      "sizeLines":  95,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/postgres-dynamic-user-filters.md",
+                      "language":  "markdown",
+                      "sizeLines":  30,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/python-agent-workbench.md",
+                      "language":  "markdown",
+                      "sizeLines":  91,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/README.md",
+                      "language":  "markdown",
+                      "sizeLines":  72,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/security-filter-chain.md",
+                      "language":  "markdown",
+                      "sizeLines":  44,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/server-locale-i18n.md",
+                      "language":  "markdown",
+                      "sizeLines":  41,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/swagger-openapi.md",
+                      "language":  "markdown",
+                      "sizeLines":  33,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/concepts/us-economy-ai-dashboard-contract.md",
+                      "language":  "markdown",
+                      "sizeLines":  177,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/ecs-deployment-testing-guide.md",
+                      "language":  "markdown",
+                      "sizeLines":  179,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/notion-tech-stack-presentation.md",
+                      "language":  "markdown",
+                      "sizeLines":  681,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/prompt-history/2026-06-05.md",
+                      "language":  "markdown",
+                      "sizeLines":  133,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/prompt-history/2026-06-07.md",
+                      "language":  "markdown",
+                      "sizeLines":  46,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/prompt-history/2026-07-03.md",
+                      "language":  "markdown",
+                      "sizeLines":  49,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/prompt-workflow-hook.md",
+                      "language":  "markdown",
+                      "sizeLines":  161,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/README.md",
+                      "language":  "markdown",
+                      "sizeLines":  101,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/superpowers/plans/2026-06-05-front-ionic-react-capacitor.md",
+                      "language":  "markdown",
+                      "sizeLines":  127,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/superpowers/plans/2026-06-12-board-crud-rag-postgresql.md",
+                      "language":  "markdown",
+                      "sizeLines":  136,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/superpowers/plans/2026-06-12-dashboard-board-ui.md",
+                      "language":  "markdown",
+                      "sizeLines":  172,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/superpowers/plans/2026-06-15-agent-langchain-discussion-rag.md",
+                      "language":  "markdown",
+                      "sizeLines":  73,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/superpowers/plans/2026-06-27-ai-study-roadmap.md",
+                      "language":  "markdown",
+                      "sizeLines":  86,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/superpowers/specs/2026-06-05-front-ionic-react-capacitor-design.md",
+                      "language":  "markdown",
+                      "sizeLines":  87,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/superpowers/specs/2026-06-12-board-crud-rag-postgresql-design.md",
+                      "language":  "markdown",
+                      "sizeLines":  75,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/superpowers/specs/2026-06-12-dashboard-board-ui-design.md",
+                      "language":  "markdown",
+                      "sizeLines":  86,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/superpowers/specs/2026-06-27-ai-study-roadmap-design.md",
+                      "language":  "markdown",
+                      "sizeLines":  77,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/us-economy-rag-board-plan.md",
+                      "language":  "markdown",
+                      "sizeLines":  611,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/work-logs/2026-06-05-backend-frontend-integration.md",
+                      "language":  "markdown",
+                      "sizeLines":  160,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/work-logs/2026-06-11-documentation-cicd-ecs.md",
+                      "language":  "markdown",
+                      "sizeLines":  45,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/work-logs/2026-06-12-board-crud-rag-postgresql.md",
+                      "language":  "markdown",
+                      "sizeLines":  70,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "docs/work-logs/2026-06-project-key-points.md",
+                      "language":  "markdown",
+                      "sizeLines":  70,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "front/capacitor.config.ts",
+                      "language":  "typescript",
+                      "sizeLines":  9,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/eslint.config.js",
+                      "language":  "javascript",
+                      "sizeLines":  19,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/index.html",
+                      "language":  "html",
+                      "sizeLines":  16,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "front/package.json",
+                      "language":  "json",
+                      "sizeLines":  37,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "front/src/api/backend.ts",
+                      "language":  "typescript",
+                      "sizeLines":  177,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/app/App.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  48,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/features/admin/api/admin.ts",
+                      "language":  "typescript",
+                      "sizeLines":  269,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/features/admin/pages/AdminPage.css",
+                      "language":  "css",
+                      "sizeLines":  244,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "front/src/features/admin/pages/AdminPage.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  439,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/features/agents/api/agents.ts",
+                      "language":  "typescript",
+                      "sizeLines":  243,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/features/agents/pages/AgentWorkbench.css",
+                      "language":  "css",
+                      "sizeLines":  435,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "front/src/features/agents/pages/AgentWorkbench.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  537,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/features/auth/api/authApi.ts",
+                      "language":  "typescript",
+                      "sizeLines":  229,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/features/auth/pages/AuthPage.css",
+                      "language":  "css",
+                      "sizeLines":  443,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "front/src/features/auth/pages/AuthPage.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  1390,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/features/board/api/posts.ts",
+                      "language":  "typescript",
+                      "sizeLines":  294,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/features/board/pages/DiscussionBoard.css",
+                      "language":  "css",
+                      "sizeLines":  506,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "front/src/features/board/pages/DiscussionBoard.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  875,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/features/economy/api/economy.ts",
+                      "language":  "typescript",
+                      "sizeLines":  311,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/features/economy/pages/HomePage.css",
+                      "language":  "css",
+                      "sizeLines":  1493,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "front/src/features/economy/pages/HomePage.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  1379,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/features/profile/pages/MyPage.css",
+                      "language":  "css",
+                      "sizeLines":  278,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "front/src/features/profile/pages/MyPage.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  399,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/features/search/api/homeSearch.ts",
+                      "language":  "typescript",
+                      "sizeLines":  45,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/features/search/pages/HomeSearchPage.css",
+                      "language":  "css",
+                      "sizeLines":  335,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "front/src/features/search/pages/HomeSearchPage.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  312,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/i18n/i18n.ts",
+                      "language":  "typescript",
+                      "sizeLines":  1221,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/i18n/I18nProvider.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  62,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/i18n/LanguageControl.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  30,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/main.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  10,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/theme/DisplaySettingsControl.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  76,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/theme/ThemeControl.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  46,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/theme/themeMode.ts",
+                      "language":  "typescript",
+                      "sizeLines":  39,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/theme/ThemeProvider.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  79,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/src/theme/variables.css",
+                      "language":  "css",
+                      "sizeLines":  287,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "front/src/vite-env.d.ts",
+                      "language":  "typescript",
+                      "sizeLines":  1,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "front/tsconfig.app.json",
+                      "language":  "json",
+                      "sizeLines":  22,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "front/tsconfig.json",
+                      "language":  "json",
+                      "sizeLines":  11,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "front/tsconfig.node.json",
+                      "language":  "json",
+                      "sizeLines":  15,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "front/vite.config.ts",
+                      "language":  "typescript",
+                      "sizeLines":  15,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "README.md",
+                      "language":  "markdown",
+                      "sizeLines":  366,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "scripts/repair-codex-git-access.ps1",
+                      "language":  "powershell",
+                      "sizeLines":  99,
+                      "fileCategory":  "script"
+                  },
+                  {
+                      "path":  "scripts/repair-git-access.ps1",
+                      "language":  "powershell",
+                      "sizeLines":  62,
+                      "fileCategory":  "script"
+                  },
+                  {
+                      "path":  "scripts/set-git-remotes.ps1",
+                      "language":  "powershell",
+                      "sizeLines":  24,
+                      "fileCategory":  "script"
+                  },
+                  {
+                      "path":  "scripts/start-local-agent-worker.ps1",
+                      "language":  "powershell",
+                      "sizeLines":  32,
+                      "fileCategory":  "script"
+                  },
+                  {
+                      "path":  "scripts/start-local-backend.ps1",
+                      "language":  "powershell",
+                      "sizeLines":  11,
+                      "fileCategory":  "script"
+                  },
+                  {
+                      "path":  "scripts/start-local-postgres.ps1",
+                      "language":  "powershell",
+                      "sizeLines":  22,
+                      "fileCategory":  "script"
+                  },
+                  {
+                      "path":  "scripts/use-origin1-as-default-remote.ps1",
+                      "language":  "powershell",
+                      "sizeLines":  45,
+                      "fileCategory":  "script"
+                  },
+                  {
+                      "path":  "study/留덉씠?щ줈?쒕퉬???꾪궎?띿쿂-媛쒕컻-吏꾪뻾-?덉감.md",
+                      "language":  "markdown",
+                      "sizeLines":  419,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/board-crud-api.md",
+                      "language":  "markdown",
+                      "sizeLines":  50,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/dashboard-board-ui.md",
+                      "language":  "markdown",
+                      "sizeLines":  71,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/postgresql-rds-rag.md",
+                      "language":  "markdown",
+                      "sizeLines":  90,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/study/00-current-ai-system-map.md",
+                      "language":  "markdown",
+                      "sizeLines":  80,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/study/01-agent-workbench-to-backend-flow.md",
+                      "language":  "markdown",
+                      "sizeLines":  132,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/study/02-agent-worker-openai-agents-flow.md",
+                      "language":  "markdown",
+                      "sizeLines":  109,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/study/03-mcp-tools-and-rag-search.md",
+                      "language":  "markdown",
+                      "sizeLines":  101,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/study/04-embeddings-pgvector-and-evidence.md",
+                      "language":  "markdown",
+                      "sizeLines":  126,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/study/05-ai-feature-roadmap.md",
+                      "language":  "markdown",
+                      "sizeLines":  161,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/study/README.md",
+                      "language":  "markdown",
+                      "sizeLines":  51,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/us-econ-ai-agents-concepts.md",
+                      "language":  "markdown",
+                      "sizeLines":  311,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/us-econ-ai-tech-stack.md",
+                      "language":  "markdown",
+                      "sizeLines":  381,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/us-economic-indicators-business-cycle-synthesis.md",
+                      "language":  "markdown",
+                      "sizeLines":  145,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/us-economic-indicators-consumer-spending-retail-sales.md",
+                      "language":  "markdown",
+                      "sizeLines":  103,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/us-economic-indicators-gdp-growth.md",
+                      "language":  "markdown",
+                      "sizeLines":  101,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/us-economic-indicators-industrial-production-capacity.md",
+                      "language":  "markdown",
+                      "sizeLines":  105,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/us-economic-indicators-inflation.md",
+                      "language":  "markdown",
+                      "sizeLines":  103,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/us-economic-indicators-interest-rates-yield-curve.md",
+                      "language":  "markdown",
+                      "sizeLines":  107,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/us-economic-indicators-labor-market.md",
+                      "language":  "markdown",
+                      "sizeLines":  121,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "study/us-economic-indicators-trade-balance-current-account.md",
+                      "language":  "markdown",
+                      "sizeLines":  112,
+                      "fileCategory":  "docs"
+                  }
+              ],
+    "totalFiles":  284,
+    "filteredByIgnore":  0,
+    "estimatedComplexity":  "large",
+    "importMap":  {
+                      ".env.agents.example":  [
+
+                                              ],
+                      ".env.cicd.example":  [
+
+                                            ],
+                      ".env.local.example":  [
+
+                                             ],
+                      ".github/backup/deploy-backend.yml":  [
+
+                                                            ],
+                      ".github/backup/deploy-frontend.yml":  [
+
+                                                             ],
+                      ".github/ISSUE_TEMPLATE/bug_report.md":  [
+
+                                                               ],
+                      ".github/ISSUE_TEMPLATE/feature_request.md":  [
+
+                                                                    ],
+                      ".github/PULL_REQUEST_TEMPLATE.md":  [
+
+                                                           ],
+                      ".github/workflows/automation.yml":  [
+
+                                                           ],
+                      ".github/workflows/aws-role.yml":  [
+
+                                                         ],
+                      ".github/workflows/ci.yml":  [
+
+                                                   ],
+                      ".understand-anything/.understandignore":  [
+
+                                                                 ],
+                      ".understand-anything/config.json":  [
+
+                                                           ],
+                      "?⑥눘???곸뒠.md":  [
+
+                                      ],
+                      "agent-worker/app/__init__.py":  [
+
+                                                       ],
+                      "agent-worker/app/discussion_retriever.py":  [
+
+                                                                   ],
+                      "agent-worker/app/guardrails.py":  [
+
+                                                         ],
+                      "agent-worker/app/main.py":  [
+                                                       "agent-worker/app/mcp_server.py",
+                                                       "agent-worker/app/schemas.py",
+                                                       "agent-worker/app/service.py"
+                                                   ],
+                      "agent-worker/app/mcp_server.py":  [
+                                                             "agent-worker/app/mcp_tools.py"
+                                                         ],
+                      "agent-worker/app/mcp_tools.py":  [
+                                                            "agent-worker/app/discussion_retriever.py",
+                                                            "agent-worker/app/guardrails.py"
+                                                        ],
+                      "agent-worker/app/schemas.py":  [
+
+                                                      ],
+                      "agent-worker/app/service.py":  [
+                                                          "agent-worker/app/guardrails.py",
+                                                          "agent-worker/app/mcp_tools.py",
+                                                          "agent-worker/app/schemas.py"
+                                                      ],
+                      "agent-worker/Dockerfile":  [
+
+                                                  ],
+                      "agent-worker/requirements.txt":  [
+
+                                                        ],
+                      "agent-worker/tests/conftest.py":  [
+
+                                                         ],
+                      "agent-worker/tests/test_agent_worker.py":  [
+                                                                      "agent-worker/app/guardrails.py",
+                                                                      "agent-worker/app/mcp_tools.py",
+                                                                      "agent-worker/app/schemas.py",
+                                                                      "agent-worker/app/service.py"
+                                                                  ],
+                      "AGENTS.md":  [
+
+                                    ],
+                      "backend/.gitattributes":  [
+
+                                                 ],
+                      "backend/.mvn/wrapper/maven-wrapper.properties":  [
+
+                                                                        ],
+                      "backend/Dockerfile":  [
+
+                                             ],
+                      "backend/mvnw":  [
+
+                                       ],
+                      "backend/mvnw.cmd":  [
+
+                                           ],
+                      "backend/pom.xml":  [
+
+                                          ],
+                      "backend/src/main/java/com/junglecamp/backend/admin/controller/AdminController.java":  [
+                                                                                                                 "backend/src/main/java/com/junglecamp/backend/admin/dto/AdminDtos.java",
+                                                                                                                 "backend/src/main/java/com/junglecamp/backend/admin/service/AdminService.java"
+                                                                                                             ],
+                      "backend/src/main/java/com/junglecamp/backend/admin/dto/AdminDtos.java":  [
+
+                                                                                                ],
+                      "backend/src/main/java/com/junglecamp/backend/admin/repository/AdminAuditRepository.java":  [
+                                                                                                                      "backend/src/main/java/com/junglecamp/backend/admin/dto/AdminDtos.java"
+                                                                                                                  ],
+                      "backend/src/main/java/com/junglecamp/backend/admin/service/AdminService.java":  [
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/admin/dto/AdminDtos.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/admin/repository/AdminAuditRepository.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/economy/service/EconomySyncService.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/rag/service/RagIndexService.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/user/repository/AppUserRepository.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java"
+                                                                                                       ],
+                      "backend/src/main/java/com/junglecamp/backend/agent/client/AgentWorkerClient.java":  [
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/agent/dto/AgentDtos.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java"
+                                                                                                           ],
+                      "backend/src/main/java/com/junglecamp/backend/agent/client/HttpAgentWorkerClient.java":  [
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/agent/dto/AgentDtos.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java"
+                                                                                                               ],
+                      "backend/src/main/java/com/junglecamp/backend/agent/controller/AgentController.java":  [
+                                                                                                                 "backend/src/main/java/com/junglecamp/backend/agent/dto/AgentDtos.java",
+                                                                                                                 "backend/src/main/java/com/junglecamp/backend/agent/service/AgentService.java",
+                                                                                                                 "backend/src/main/java/com/junglecamp/backend/i18n/LocaleResolver.java",
+                                                                                                                 "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java"
+                                                                                                             ],
+                      "backend/src/main/java/com/junglecamp/backend/agent/controller/AgentToolController.java":  [
+                                                                                                                     "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java",
+                                                                                                                     "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                                                                                                                     "backend/src/main/java/com/junglecamp/backend/economy/service/EconomyDashboardService.java",
+                                                                                                                     "backend/src/main/java/com/junglecamp/backend/rag/dto/RagDtos.java",
+                                                                                                                     "backend/src/main/java/com/junglecamp/backend/rag/service/RagIndexService.java"
+                                                                                                                 ],
+                      "backend/src/main/java/com/junglecamp/backend/agent/dto/AgentDtos.java":  [
+                                                                                                    "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java"
+                                                                                                ],
+                      "backend/src/main/java/com/junglecamp/backend/agent/exception/AgentGuardrailException.java":  [
+
+                                                                                                                    ],
+                      "backend/src/main/java/com/junglecamp/backend/agent/repository/AgentRunRepository.java":  [
+                                                                                                                    "backend/src/main/java/com/junglecamp/backend/agent/dto/AgentDtos.java",
+                                                                                                                    "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java"
+                                                                                                                ],
+                      "backend/src/main/java/com/junglecamp/backend/agent/service/AgentService.java":  [
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/agent/client/AgentWorkerClient.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/agent/dto/AgentDtos.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/agent/exception/AgentGuardrailException.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/agent/repository/AgentRunRepository.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/economy/service/EconomyDashboardService.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java"
+                                                                                                       ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/client/CaptchaVerifier.java":  [
+
+                                                                                                        ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/client/SmtpVerificationEmailSender.java":  [
+
+                                                                                                                    ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/client/TurnstileCaptchaVerifier.java":  [
+
+                                                                                                                 ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/client/VerificationEmailSender.java":  [
+
+                                                                                                                ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/controller/AuthController.java":  [
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/auth/exception/AuthException.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/auth/service/AdminMfaService.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/auth/service/AuthCookieService.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/auth/service/AuthRateLimitService.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/auth/service/AuthService.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/user/service/CurrentUserProfileService.java"
+                                                                                                           ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/dto/AuthDtos.java":  [
+
+                                                                                              ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/exception/AuthException.java":  [
+
+                                                                                                         ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/filter/AdminMfaFilter.java":  [
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/auth/service/AdminMfaService.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java",
+                                                                                                           "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java"
+                                                                                                       ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/filter/JwtCookieAuthenticationFilter.java":  [
+                                                                                                                          "backend/src/main/java/com/junglecamp/backend/auth/service/AuthCookieService.java",
+                                                                                                                          "backend/src/main/java/com/junglecamp/backend/auth/service/JwtService.java",
+                                                                                                                          "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java",
+                                                                                                                          "backend/src/main/java/com/junglecamp/backend/user/repository/AppUserRepository.java"
+                                                                                                                      ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/filter/JwtCsrfFilter.java":  [
+                                                                                                          "backend/src/main/java/com/junglecamp/backend/auth/service/AuthCookieService.java"
+                                                                                                      ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/handler/OAuth2JwtAuthenticationSuccessHandler.java":  [
+                                                                                                                                   "backend/src/main/java/com/junglecamp/backend/auth/service/AdminMfaService.java",
+                                                                                                                                   "backend/src/main/java/com/junglecamp/backend/auth/service/AuthCookieService.java",
+                                                                                                                                   "backend/src/main/java/com/junglecamp/backend/auth/service/AuthService.java",
+                                                                                                                                   "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java",
+                                                                                                                                   "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java"
+                                                                                                                               ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/repository/AdminMfaRepository.java":  [
+
+                                                                                                               ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/repository/AuthRateLimitRepository.java":  [
+
+                                                                                                                    ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/repository/EmailVerificationTokenRepository.java":  [
+                                                                                                                                 "backend/src/main/java/com/junglecamp/backend/auth/support/TokenHashing.java"
+                                                                                                                             ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/repository/RefreshTokenRepository.java":  [
+                                                                                                                       "backend/src/main/java/com/junglecamp/backend/auth/support/TokenHashing.java"
+                                                                                                                   ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/service/AdminMfaCookieService.java":  [
+
+                                                                                                               ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/service/AdminMfaService.java":  [
+                                                                                                             "backend/src/main/java/com/junglecamp/backend/auth/exception/AuthException.java",
+                                                                                                             "backend/src/main/java/com/junglecamp/backend/auth/repository/AdminMfaRepository.java",
+                                                                                                             "backend/src/main/java/com/junglecamp/backend/auth/support/TokenHashing.java",
+                                                                                                             "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java"
+                                                                                                         ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/service/AuthCookieService.java":  [
+
+                                                                                                           ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/service/AuthRateLimitService.java":  [
+                                                                                                                  "backend/src/main/java/com/junglecamp/backend/auth/client/CaptchaVerifier.java",
+                                                                                                                  "backend/src/main/java/com/junglecamp/backend/auth/exception/AuthException.java",
+                                                                                                                  "backend/src/main/java/com/junglecamp/backend/auth/repository/AuthRateLimitRepository.java"
+                                                                                                              ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/service/AuthService.java":  [
+                                                                                                         "backend/src/main/java/com/junglecamp/backend/auth/client/VerificationEmailSender.java",
+                                                                                                         "backend/src/main/java/com/junglecamp/backend/auth/exception/AuthException.java",
+                                                                                                         "backend/src/main/java/com/junglecamp/backend/auth/repository/EmailVerificationTokenRepository.java",
+                                                                                                         "backend/src/main/java/com/junglecamp/backend/auth/repository/RefreshTokenRepository.java",
+                                                                                                         "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java",
+                                                                                                         "backend/src/main/java/com/junglecamp/backend/user/repository/AppUserRepository.java",
+                                                                                                         "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java"
+                                                                                                     ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/service/DataEncryptionService.java":  [
+
+                                                                                                               ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/service/JwtService.java":  [
+                                                                                                        "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java"
+                                                                                                    ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/service/TotpService.java":  [
+
+                                                                                                     ],
+                      "backend/src/main/java/com/junglecamp/backend/auth/support/TokenHashing.java":  [
+
+                                                                                                      ],
+                      "backend/src/main/java/com/junglecamp/backend/BackendApplication.java":  [
+
+                                                                                               ],
+                      "backend/src/main/java/com/junglecamp/backend/board/controller/BoardPostController.java":  [
+                                                                                                                     "backend/src/main/java/com/junglecamp/backend/board/dto/BoardPostDtos.java",
+                                                                                                                     "backend/src/main/java/com/junglecamp/backend/board/service/BoardPostService.java"
+                                                                                                                 ],
+                      "backend/src/main/java/com/junglecamp/backend/board/dto/BoardPostDtos.java":  [
+
+                                                                                                    ],
+                      "backend/src/main/java/com/junglecamp/backend/board/model/BoardComment.java":  [
+
+                                                                                                     ],
+                      "backend/src/main/java/com/junglecamp/backend/board/model/BoardPost.java":  [
+
+                                                                                                  ],
+                      "backend/src/main/java/com/junglecamp/backend/board/model/BoardTag.java":  [
+
+                                                                                                 ],
+                      "backend/src/main/java/com/junglecamp/backend/board/repository/BoardCommentRepository.java":  [
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/board/model/BoardComment.java"
+                                                                                                                    ],
+                      "backend/src/main/java/com/junglecamp/backend/board/repository/BoardPostRepository.java":  [
+                                                                                                                     "backend/src/main/java/com/junglecamp/backend/board/model/BoardPost.java"
+                                                                                                                 ],
+                      "backend/src/main/java/com/junglecamp/backend/board/repository/BoardTagRepository.java":  [
+                                                                                                                    "backend/src/main/java/com/junglecamp/backend/board/model/BoardTag.java"
+                                                                                                                ],
+                      "backend/src/main/java/com/junglecamp/backend/board/service/BoardPostService.java":  [
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/board/dto/BoardPostDtos.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/board/model/BoardComment.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/board/model/BoardPost.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/board/model/BoardTag.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/board/repository/BoardCommentRepository.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/board/repository/BoardPostRepository.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/board/repository/BoardTagRepository.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/rag/service/RagIndexService.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/user/repository/AppUserRepository.java",
+                                                                                                               "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java"
+                                                                                                           ],
+                      "backend/src/main/java/com/junglecamp/backend/config/OpenApiConfig.java":  [
+
+                                                                                                 ],
+                      "backend/src/main/java/com/junglecamp/backend/config/SecurityConfig.java":  [
+                                                                                                      "backend/src/main/java/com/junglecamp/backend/auth/filter/AdminMfaFilter.java",
+                                                                                                      "backend/src/main/java/com/junglecamp/backend/auth/filter/JwtCookieAuthenticationFilter.java",
+                                                                                                      "backend/src/main/java/com/junglecamp/backend/auth/filter/JwtCsrfFilter.java",
+                                                                                                      "backend/src/main/java/com/junglecamp/backend/auth/handler/OAuth2JwtAuthenticationSuccessHandler.java",
+                                                                                                      "backend/src/main/java/com/junglecamp/backend/auth/service/AdminMfaCookieService.java",
+                                                                                                      "backend/src/main/java/com/junglecamp/backend/auth/service/AdminMfaService.java",
+                                                                                                      "backend/src/main/java/com/junglecamp/backend/auth/service/AuthCookieService.java",
+                                                                                                      "backend/src/main/java/com/junglecamp/backend/auth/service/AuthService.java",
+                                                                                                      "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java"
+                                                                                                  ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/client/FredSeriesClient.java":  [
+                                                                                                                "backend/src/main/java/com/junglecamp/backend/economy/definition/MetricDefinition.java",
+                                                                                                                "backend/src/main/java/com/junglecamp/backend/economy/mapper/FredObservationMapper.java",
+                                                                                                                "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                                                                                                                "backend/src/main/java/com/junglecamp/backend/economy/model/FredObservation.java"
+                                                                                                            ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/client/KoreaEximExchangeClient.java":  [
+                                                                                                                       "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java"
+                                                                                                                   ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/controller/UsEconomyDashboardController.java":  [
+                                                                                                                                "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java",
+                                                                                                                                "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomySupplementDtos.java",
+                                                                                                                                "backend/src/main/java/com/junglecamp/backend/economy/service/EconomyDashboardService.java",
+                                                                                                                                "backend/src/main/java/com/junglecamp/backend/economy/service/EconomySupplementService.java",
+                                                                                                                                "backend/src/main/java/com/junglecamp/backend/i18n/LocaleResolver.java"
+                                                                                                                            ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/definition/EconomyMetricDefinitions.java":  [
+
+                                                                                                                        ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/definition/MetricDefinition.java":  [
+
+                                                                                                                ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java":  [
+                                                                                                                 "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java"
+                                                                                                             ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomySupplementDtos.java":  [
+                                                                                                                  "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java"
+                                                                                                              ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/mapper/FredObservationMapper.java":  [
+                                                                                                                     "backend/src/main/java/com/junglecamp/backend/economy/definition/MetricDefinition.java",
+                                                                                                                     "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                                                                                                                     "backend/src/main/java/com/junglecamp/backend/economy/model/FredObservation.java"
+                                                                                                                 ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java":  [
+
+                                                                                                                ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/model/FredObservation.java":  [
+
+                                                                                                          ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/repository/EconomySnapshotRepository.java":  [
+                                                                                                                             "backend/src/main/java/com/junglecamp/backend/economy/definition/EconomyMetricDefinitions.java",
+                                                                                                                             "backend/src/main/java/com/junglecamp/backend/economy/definition/MetricDefinition.java",
+                                                                                                                             "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java",
+                                                                                                                             "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomySupplementDtos.java",
+                                                                                                                             "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                                                                                                                             "backend/src/main/java/com/junglecamp/backend/economy/model/FredObservation.java",
+                                                                                                                             "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java"
+                                                                                                                         ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/service/EconomyDashboardService.java":  [
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/economy/definition/EconomyMetricDefinitions.java",
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java",
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/economy/repository/EconomySnapshotRepository.java",
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java"
+                                                                                                                    ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/service/EconomyEventSupplementSyncService.java":  [
+                                                                                                                                  "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java",
+                                                                                                                                  "backend/src/main/java/com/junglecamp/backend/economy/repository/EconomySnapshotRepository.java"
+                                                                                                                              ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/service/EconomySourceComparisonSyncService.java":  [
+                                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/definition/EconomyMetricDefinitions.java",
+                                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/definition/MetricDefinition.java",
+                                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomySupplementDtos.java",
+                                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/repository/EconomySnapshotRepository.java"
+                                                                                                                               ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/service/EconomySupplementService.java":  [
+                                                                                                                         "backend/src/main/java/com/junglecamp/backend/economy/definition/EconomyMetricDefinitions.java",
+                                                                                                                         "backend/src/main/java/com/junglecamp/backend/economy/definition/MetricDefinition.java",
+                                                                                                                         "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java",
+                                                                                                                         "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomySupplementDtos.java",
+                                                                                                                         "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                                                                                                                         "backend/src/main/java/com/junglecamp/backend/economy/repository/EconomySnapshotRepository.java",
+                                                                                                                         "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java"
+                                                                                                                     ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/service/EconomySyncService.java":  [
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/client/FredSeriesClient.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/definition/EconomyMetricDefinitions.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/definition/MetricDefinition.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/repository/EconomySnapshotRepository.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java"
+                                                                                                               ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/service/EconomyTextCatalog.java":  [
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java"
+                                                                                                               ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/service/KoreaEximExchangeSyncService.java":  [
+                                                                                                                             "backend/src/main/java/com/junglecamp/backend/economy/client/KoreaEximExchangeClient.java",
+                                                                                                                             "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java",
+                                                                                                                             "backend/src/main/java/com/junglecamp/backend/economy/repository/EconomySnapshotRepository.java"
+                                                                                                                         ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/service/OpenAiBriefService.java":  [
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java"
+                                                                                                               ],
+                      "backend/src/main/java/com/junglecamp/backend/economy/service/RuleBasedBriefFactory.java":  [
+                                                                                                                      "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java",
+                                                                                                                      "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                                                                                                                      "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java"
+                                                                                                                  ],
+                      "backend/src/main/java/com/junglecamp/backend/i18n/LocaleResolver.java":  [
+
+                                                                                                ],
+                      "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java":  [
+
+                                                                                                 ],
+                      "backend/src/main/java/com/junglecamp/backend/rag/dto/RagDtos.java":  [
+
+                                                                                            ],
+                      "backend/src/main/java/com/junglecamp/backend/rag/service/OpenAiEmbeddingService.java":  [
+
+                                                                                                               ],
+                      "backend/src/main/java/com/junglecamp/backend/rag/service/RagIndexService.java":  [
+                                                                                                            "backend/src/main/java/com/junglecamp/backend/board/model/BoardPost.java",
+                                                                                                            "backend/src/main/java/com/junglecamp/backend/rag/dto/RagDtos.java"
+                                                                                                        ],
+                      "backend/src/main/java/com/junglecamp/backend/search/controller/HomeSearchController.java":  [
+                                                                                                                       "backend/src/main/java/com/junglecamp/backend/i18n/LocaleResolver.java",
+                                                                                                                       "backend/src/main/java/com/junglecamp/backend/search/service/HomeSearchService.java"
+                                                                                                                   ],
+                      "backend/src/main/java/com/junglecamp/backend/search/dto/HomeSearchDtos.java":  [
+
+                                                                                                      ],
+                      "backend/src/main/java/com/junglecamp/backend/search/service/HomeSearchService.java":  [
+                                                                                                                 "backend/src/main/java/com/junglecamp/backend/board/service/BoardPostService.java",
+                                                                                                                 "backend/src/main/java/com/junglecamp/backend/economy/service/EconomySupplementService.java",
+                                                                                                                 "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java"
+                                                                                                             ],
+                      "backend/src/main/java/com/junglecamp/backend/system/controller/StatusController.java":  [
+
+                                                                                                               ],
+                      "backend/src/main/java/com/junglecamp/backend/user/controller/CurrentUserController.java":  [
+                                                                                                                      "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java",
+                                                                                                                      "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java",
+                                                                                                                      "backend/src/main/java/com/junglecamp/backend/user/service/CurrentUserProfileService.java"
+                                                                                                                  ],
+                      "backend/src/main/java/com/junglecamp/backend/user/controller/DashboardPreferenceController.java":  [
+                                                                                                                              "backend/src/main/java/com/junglecamp/backend/user/model/DashboardPreferences.java",
+                                                                                                                              "backend/src/main/java/com/junglecamp/backend/user/service/DashboardPreferenceService.java"
+                                                                                                                          ],
+                      "backend/src/main/java/com/junglecamp/backend/user/dto/UserDtos.java":  [
+
+                                                                                              ],
+                      "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java":  [
+
+                                                                                               ],
+                      "backend/src/main/java/com/junglecamp/backend/user/model/DashboardPreferences.java":  [
+
+                                                                                                            ],
+                      "backend/src/main/java/com/junglecamp/backend/user/repository/AppUserRepository.java":  [
+                                                                                                                  "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java"
+                                                                                                              ],
+                      "backend/src/main/java/com/junglecamp/backend/user/repository/DashboardPreferenceRepository.java":  [
+                                                                                                                              "backend/src/main/java/com/junglecamp/backend/user/model/DashboardPreferences.java"
+                                                                                                                          ],
+                      "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java":  [
+                                                                                                            "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java",
+                                                                                                            "backend/src/main/java/com/junglecamp/backend/user/repository/AppUserRepository.java"
+                                                                                                        ],
+                      "backend/src/main/java/com/junglecamp/backend/user/service/CurrentUserProfileService.java":  [
+                                                                                                                       "backend/src/main/java/com/junglecamp/backend/auth/service/AdminMfaService.java",
+                                                                                                                       "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java"
+                                                                                                                   ],
+                      "backend/src/main/java/com/junglecamp/backend/user/service/DashboardPreferenceService.java":  [
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java",
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/user/model/DashboardPreferences.java",
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/user/repository/DashboardPreferenceRepository.java",
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java"
+                                                                                                                    ],
+                      "backend/src/main/java/com/junglecamp/backend/user/service/PersistingOAuth2UserService.java":  [
+
+                                                                                                                     ],
+                      "backend/src/main/java/com/junglecamp/backend/web/controller/PageController.java":  [
+
+                                                                                                          ],
+                      "backend/src/main/resources/application-test.properties":  [
+
+                                                                                 ],
+                      "backend/src/main/resources/application.properties":  [
+
+                                                                            ],
+                      "backend/src/main/resources/db/migration/V1__create_board_and_rag_schema.sql":  [
+
+                                                                                                      ],
+                      "backend/src/main/resources/db/migration/V10__add_economy_history_and_source_comparison.sql":  [
+
+                                                                                                                     ],
+                      "backend/src/main/resources/db/migration/V11__seed_ai_discussion_samples.sql":  [
+
+                                                                                                      ],
+                      "backend/src/main/resources/db/migration/V12__backfill_ai_discussion_sample_posts.sql":  [
+
+                                                                                                               ],
+                      "backend/src/main/resources/db/migration/V13__add_jwt_auth_and_source_comparison_policy.sql":  [
+
+                                                                                                                     ],
+                      "backend/src/main/resources/db/migration/V14__create_economy_exchange_rates.sql":  [
+
+                                                                                                         ],
+                      "backend/src/main/resources/db/migration/V15__add_email_verification_and_admin.sql":  [
+
+                                                                                                            ],
+                      "backend/src/main/resources/db/migration/V16__add_auth_rate_limit_and_admin_mfa.sql":  [
+
+                                                                                                             ],
+                      "backend/src/main/resources/db/migration/V17__add_signup_consent_and_email_codes.sql":  [
+
+                                                                                                              ],
+                      "backend/src/main/resources/db/migration/V18__seed_ai_discussion_sample_comments.sql":  [
+
+                                                                                                              ],
+                      "backend/src/main/resources/db/migration/V19__add_more_inflation_sample_comments.sql":  [
+
+                                                                                                              ],
+                      "backend/src/main/resources/db/migration/V2__create_economy_cache_schema.sql":  [
+
+                                                                                                      ],
+                      "backend/src/main/resources/db/migration/V20__add_board_post_deleted_at.sql":  [
+
+                                                                                                     ],
+                      "backend/src/main/resources/db/migration/V3__create_users_and_dashboard_preferences.sql":  [
+
+                                                                                                                 ],
+                      "backend/src/main/resources/db/migration/V4__create_agent_workbench_schema.sql":  [
+
+                                                                                                        ],
+                      "backend/src/main/resources/db/migration/V5__extend_agent_mcp_evidence_schema.sql":  [
+
+                                                                                                           ],
+                      "backend/src/main/resources/db/migration/V6__add_agent_message_level_evidence.sql":  [
+
+                                                                                                           ],
+                      "backend/src/main/resources/db/migration/V7__add_agent_run_soft_delete.sql":  [
+
+                                                                                                    ],
+                      "backend/src/main/resources/db/migration/V8__extend_board_community_features.sql":  [
+
+                                                                                                          ],
+                      "backend/src/main/resources/db/migration/V9__add_locale_to_economy_and_agent_runs.sql":  [
+
+                                                                                                               ],
+                      "backend/src/main/resources/static/css/auth.css":  [
+
+                                                                         ],
+                      "backend/src/main/resources/templates/home.html":  [
+
+                                                                         ],
+                      "backend/src/main/resources/templates/login.html":  [
+
+                                                                          ],
+                      "backend/src/test/java/com/junglecamp/backend/agent/HttpAgentWorkerClientTests.java":  [
+                                                                                                                 "backend/src/main/java/com/junglecamp/backend/agent/client/HttpAgentWorkerClient.java",
+                                                                                                                 "backend/src/main/java/com/junglecamp/backend/agent/dto/AgentDtos.java",
+                                                                                                                 "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java"
+                                                                                                             ],
+                      "backend/src/test/java/com/junglecamp/backend/ApiIntegrationTests.java":  [
+                                                                                                    "backend/src/main/java/com/junglecamp/backend/agent/client/AgentWorkerClient.java",
+                                                                                                    "backend/src/main/java/com/junglecamp/backend/agent/dto/AgentDtos.java",
+                                                                                                    "backend/src/main/java/com/junglecamp/backend/auth/client/CaptchaVerifier.java",
+                                                                                                    "backend/src/main/java/com/junglecamp/backend/auth/client/VerificationEmailSender.java",
+                                                                                                    "backend/src/main/java/com/junglecamp/backend/auth/service/TotpService.java",
+                                                                                                    "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java",
+                                                                                                    "backend/src/main/java/com/junglecamp/backend/rag/service/OpenAiEmbeddingService.java"
+                                                                                                ],
+                      "backend/src/test/java/com/junglecamp/backend/auth/client/SmtpVerificationEmailSenderTests.java":  [
+
+                                                                                                                         ],
+                      "backend/src/test/java/com/junglecamp/backend/auth/handler/OAuth2JwtAuthenticationSuccessHandlerTests.java":  [
+                                                                                                                                        "backend/src/main/java/com/junglecamp/backend/auth/service/AdminMfaService.java",
+                                                                                                                                        "backend/src/main/java/com/junglecamp/backend/auth/service/AuthCookieService.java",
+                                                                                                                                        "backend/src/main/java/com/junglecamp/backend/auth/service/AuthService.java",
+                                                                                                                                        "backend/src/main/java/com/junglecamp/backend/auth/service/JwtService.java",
+                                                                                                                                        "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java",
+                                                                                                                                        "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java"
+                                                                                                                                    ],
+                      "backend/src/test/java/com/junglecamp/backend/BackendApplicationTests.java":  [
+
+                                                                                                    ],
+                      "backend/src/test/java/com/junglecamp/backend/board/BoardPostServiceTests.java":  [
+                                                                                                            "backend/src/main/java/com/junglecamp/backend/board/repository/BoardCommentRepository.java",
+                                                                                                            "backend/src/main/java/com/junglecamp/backend/board/repository/BoardPostRepository.java",
+                                                                                                            "backend/src/main/java/com/junglecamp/backend/board/repository/BoardTagRepository.java",
+                                                                                                            "backend/src/main/java/com/junglecamp/backend/board/service/BoardPostService.java",
+                                                                                                            "backend/src/main/java/com/junglecamp/backend/rag/service/RagIndexService.java",
+                                                                                                            "backend/src/main/java/com/junglecamp/backend/user/repository/AppUserRepository.java",
+                                                                                                            "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java"
+                                                                                                        ],
+                      "backend/src/test/java/com/junglecamp/backend/economy/EconomySourceComparisonSyncServiceTests.java":  [
+                                                                                                                                "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomySupplementDtos.java",
+                                                                                                                                "backend/src/main/java/com/junglecamp/backend/economy/repository/EconomySnapshotRepository.java",
+                                                                                                                                "backend/src/main/java/com/junglecamp/backend/economy/service/EconomySourceComparisonSyncService.java",
+                                                                                                                                "backend/src/main/java/com/junglecamp/backend/economy/service/EconomySupplementService.java"
+                                                                                                                            ],
+                      "backend/src/test/java/com/junglecamp/backend/economy/FredObservationMapperTests.java":  [
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/definition/EconomyMetricDefinitions.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/definition/MetricDefinition.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/mapper/FredObservationMapper.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/model/FredObservation.java",
+                                                                                                                   "backend/src/main/java/com/junglecamp/backend/economy/service/RuleBasedBriefFactory.java"
+                                                                                                               ],
+                      "backend/src/test/java/com/junglecamp/backend/economy/KoreaEximExchangeClientTests.java":  [
+                                                                                                                     "backend/src/main/java/com/junglecamp/backend/economy/client/KoreaEximExchangeClient.java",
+                                                                                                                     "backend/src/main/java/com/junglecamp/backend/economy/dto/EconomyDashboardDtos.java"
+                                                                                                                 ],
+                      "backend/src/test/java/com/junglecamp/backend/economy/service/EconomyDashboardServiceTests.java":  [
+                                                                                                                             "backend/src/main/java/com/junglecamp/backend/economy/repository/EconomySnapshotRepository.java",
+                                                                                                                             "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java"
+                                                                                                                         ],
+                      "backend/src/test/java/com/junglecamp/backend/economy/service/EconomySyncServiceTests.java":  [
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/economy/client/FredSeriesClient.java",
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/economy/definition/MetricDefinition.java",
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/economy/repository/EconomySnapshotRepository.java",
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java"
+                                                                                                                    ],
+                      "backend/src/test/java/com/junglecamp/backend/economy/service/OpenAiBriefServiceTests.java":  [
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/economy/model/EconomyMetricSnapshot.java",
+                                                                                                                        "backend/src/main/java/com/junglecamp/backend/i18n/SupportedLocale.java"
+                                                                                                                    ],
+                      "backend/src/test/java/com/junglecamp/backend/EnvironmentFileConfigTests.java":  [
+
+                                                                                                       ],
+                      "backend/src/test/java/com/junglecamp/backend/LoginSecurityTests.java":  [
+
+                                                                                               ],
+                      "backend/src/test/java/com/junglecamp/backend/user/AppUserRepositoryTests.java":  [
+                                                                                                            "backend/src/main/java/com/junglecamp/backend/user/repository/AppUserRepository.java"
+                                                                                                        ],
+                      "backend/src/test/java/com/junglecamp/backend/user/AppUserServiceTests.java":  [
+                                                                                                         "backend/src/main/java/com/junglecamp/backend/user/model/AppUser.java",
+                                                                                                         "backend/src/main/java/com/junglecamp/backend/user/service/AppUserService.java"
+                                                                                                     ],
+                      "docs/concepts/admin-hidden-content-moderation.md":  [
+
+                                                                           ],
+                      "docs/concepts/admin-login-mfa-gate.md":  [
+
+                                                                ],
+                      "docs/concepts/agent-langchain-discussion-rag.md":  [
+
+                                                                          ],
+                      "docs/concepts/backend-test-schema-isolation.md":  [
+
+                                                                         ],
+                      "docs/concepts/board-comment-fetch-join-duplication.md":  [
+
+                                                                                ],
+                      "docs/concepts/board-notification-detail-modal.md":  [
+
+                                                                           ],
+                      "docs/concepts/board-post-tombstone-deletion.md":  [
+
+                                                                         ],
+                      "docs/concepts/board-rag-postgresql.md":  [
+
+                                                                ],
+                      "docs/concepts/browser-synced-theme.md":  [
+
+                                                                ],
+                      "docs/concepts/cicd-ecs-deployment.md":  [
+
+                                                               ],
+                      "docs/concepts/dashboard-board-ui.md":  [
+
+                                                              ],
+                      "docs/concepts/domain-layered-package-structure.md":  [
+
+                                                                            ],
+                      "docs/concepts/economic-discussion-feed.md":  [
+
+                                                                    ],
+                      "docs/concepts/email-verification-admin-console.md":  [
+
+                                                                            ],
+                      "docs/concepts/frontend-domain-feature-structure.md":  [
+
+                                                                             ],
+                      "docs/concepts/frontend-i18n.md":  [
+
+                                                         ],
+                      "docs/concepts/google-oauth-dashboard-preferences.md":  [
+
+                                                                              ],
+                      "docs/concepts/home-aggregate-search.md":  [
+
+                                                                 ],
+                      "docs/concepts/home-economy-history-tabs.md":  [
+
+                                                                     ],
+                      "docs/concepts/iam-cost-bomb-guardrail-policies.md":  [
+
+                                                                            ],
+                      "docs/concepts/iam-tag-based-sandbox-policies.md":  [
+
+                                                                          ],
+                      "docs/concepts/jwt-local-auth-and-protected-workspaces.md":  [
+
+                                                                                   ],
+                      "docs/concepts/local-api-cors.md":  [
+
+                                                          ],
+                      "docs/concepts/local-env-file-loading.md":  [
+
+                                                                  ],
+                      "docs/concepts/postgres-dynamic-user-filters.md":  [
+
+                                                                         ],
+                      "docs/concepts/python-agent-workbench.md":  [
+
+                                                                  ],
+                      "docs/concepts/README.md":  [
+
+                                                  ],
+                      "docs/concepts/security-filter-chain.md":  [
+
+                                                                 ],
+                      "docs/concepts/server-locale-i18n.md":  [
+
+                                                              ],
+                      "docs/concepts/swagger-openapi.md":  [
+
+                                                           ],
+                      "docs/concepts/us-economy-ai-dashboard-contract.md":  [
+
+                                                                            ],
+                      "docs/ecs-deployment-testing-guide.md":  [
+
+                                                               ],
+                      "docs/notion-tech-stack-presentation.md":  [
+
+                                                                 ],
+                      "docs/prompt-history/2026-06-05.md":  [
+
+                                                            ],
+                      "docs/prompt-history/2026-06-07.md":  [
+
+                                                            ],
+                      "docs/prompt-history/2026-07-03.md":  [
+
+                                                            ],
+                      "docs/prompt-workflow-hook.md":  [
+
+                                                       ],
+                      "docs/README.md":  [
+
+                                         ],
+                      "docs/superpowers/plans/2026-06-05-front-ionic-react-capacitor.md":  [
+
+                                                                                           ],
+                      "docs/superpowers/plans/2026-06-12-board-crud-rag-postgresql.md":  [
+
+                                                                                         ],
+                      "docs/superpowers/plans/2026-06-12-dashboard-board-ui.md":  [
+
+                                                                                  ],
+                      "docs/superpowers/plans/2026-06-15-agent-langchain-discussion-rag.md":  [
+
+                                                                                              ],
+                      "docs/superpowers/plans/2026-06-27-ai-study-roadmap.md":  [
+
+                                                                                ],
+                      "docs/superpowers/specs/2026-06-05-front-ionic-react-capacitor-design.md":  [
+
+                                                                                                  ],
+                      "docs/superpowers/specs/2026-06-12-board-crud-rag-postgresql-design.md":  [
+
+                                                                                                ],
+                      "docs/superpowers/specs/2026-06-12-dashboard-board-ui-design.md":  [
+
+                                                                                         ],
+                      "docs/superpowers/specs/2026-06-27-ai-study-roadmap-design.md":  [
+
+                                                                                       ],
+                      "docs/us-economy-rag-board-plan.md":  [
+
+                                                            ],
+                      "docs/work-logs/2026-06-05-backend-frontend-integration.md":  [
+
+                                                                                    ],
+                      "docs/work-logs/2026-06-11-documentation-cicd-ecs.md":  [
+
+                                                                              ],
+                      "docs/work-logs/2026-06-12-board-crud-rag-postgresql.md":  [
+
+                                                                                 ],
+                      "docs/work-logs/2026-06-project-key-points.md":  [
+
+                                                                       ],
+                      "front/capacitor.config.ts":  [
+
+                                                    ],
+                      "front/eslint.config.js":  [
+
+                                                 ],
+                      "front/index.html":  [
+
+                                           ],
+                      "front/package.json":  [
+
+                                             ],
+                      "front/src/api/backend.ts":  [
+
+                                                   ],
+                      "front/src/app/App.tsx":  [
+                                                    "front/src/features/admin/pages/AdminPage.tsx",
+                                                    "front/src/features/auth/pages/AuthPage.tsx",
+                                                    "front/src/features/economy/pages/HomePage.tsx",
+                                                    "front/src/features/profile/pages/MyPage.tsx",
+                                                    "front/src/features/search/pages/HomeSearchPage.tsx",
+                                                    "front/src/i18n/I18nProvider.tsx",
+                                                    "front/src/theme/ThemeProvider.tsx",
+                                                    "front/src/theme/variables.css"
+                                                ],
+                      "front/src/features/admin/api/admin.ts":  [
+                                                                    "front/src/api/backend.ts"
+                                                                ],
+                      "front/src/features/admin/pages/AdminPage.css":  [
+
+                                                                       ],
+                      "front/src/features/admin/pages/AdminPage.tsx":  [
+                                                                           "front/src/api/backend.ts",
+                                                                           "front/src/features/admin/api/admin.ts",
+                                                                           "front/src/features/admin/pages/AdminPage.css"
+                                                                       ],
+                      "front/src/features/agents/api/agents.ts":  [
+                                                                      "front/src/api/backend.ts",
+                                                                      "front/src/i18n/i18n.ts"
+                                                                  ],
+                      "front/src/features/agents/pages/AgentWorkbench.css":  [
+
+                                                                             ],
+                      "front/src/features/agents/pages/AgentWorkbench.tsx":  [
+                                                                                 "front/src/api/backend.ts",
+                                                                                 "front/src/features/agents/api/agents.ts",
+                                                                                 "front/src/features/agents/pages/AgentWorkbench.css",
+                                                                                 "front/src/features/auth/api/authApi.ts",
+                                                                                 "front/src/features/economy/api/economy.ts",
+                                                                                 "front/src/i18n/I18nProvider.tsx"
+                                                                             ],
+                      "front/src/features/auth/api/authApi.ts":  [
+                                                                     "front/src/api/backend.ts"
+                                                                 ],
+                      "front/src/features/auth/pages/AuthPage.css":  [
+
+                                                                     ],
+                      "front/src/features/auth/pages/AuthPage.tsx":  [
+                                                                         "front/src/features/auth/api/authApi.ts",
+                                                                         "front/src/features/auth/pages/AuthPage.css"
+                                                                     ],
+                      "front/src/features/board/api/posts.ts":  [
+                                                                    "front/src/api/backend.ts"
+                                                                ],
+                      "front/src/features/board/pages/DiscussionBoard.css":  [
+
+                                                                             ],
+                      "front/src/features/board/pages/DiscussionBoard.tsx":  [
+                                                                                 "front/src/api/backend.ts",
+                                                                                 "front/src/features/admin/api/admin.ts",
+                                                                                 "front/src/features/board/api/posts.ts",
+                                                                                 "front/src/features/board/pages/DiscussionBoard.css",
+                                                                                 "front/src/i18n/I18nProvider.tsx"
+                                                                             ],
+                      "front/src/features/economy/api/economy.ts":  [
+                                                                        "front/src/i18n/i18n.ts"
+                                                                    ],
+                      "front/src/features/economy/pages/HomePage.css":  [
+
+                                                                        ],
+                      "front/src/features/economy/pages/HomePage.tsx":  [
+                                                                            "front/src/api/backend.ts",
+                                                                            "front/src/features/agents/pages/AgentWorkbench.tsx",
+                                                                            "front/src/features/board/api/posts.ts",
+                                                                            "front/src/features/board/pages/DiscussionBoard.tsx",
+                                                                            "front/src/features/economy/api/economy.ts",
+                                                                            "front/src/features/economy/pages/HomePage.css",
+                                                                            "front/src/i18n/i18n.ts",
+                                                                            "front/src/i18n/I18nProvider.tsx",
+                                                                            "front/src/theme/DisplaySettingsControl.tsx"
+                                                                        ],
+                      "front/src/features/profile/pages/MyPage.css":  [
+
+                                                                      ],
+                      "front/src/features/profile/pages/MyPage.tsx":  [
+                                                                          "front/src/api/backend.ts",
+                                                                          "front/src/features/economy/api/economy.ts",
+                                                                          "front/src/features/economy/pages/HomePage.css",
+                                                                          "front/src/features/profile/pages/MyPage.css",
+                                                                          "front/src/i18n/I18nProvider.tsx",
+                                                                          "front/src/theme/DisplaySettingsControl.tsx"
+                                                                      ],
+                      "front/src/features/search/api/homeSearch.ts":  [
+                                                                          "front/src/features/board/api/posts.ts",
+                                                                          "front/src/features/economy/api/economy.ts",
+                                                                          "front/src/i18n/i18n.ts"
+                                                                      ],
+                      "front/src/features/search/pages/HomeSearchPage.css":  [
+
+                                                                             ],
+                      "front/src/features/search/pages/HomeSearchPage.tsx":  [
+                                                                                 "front/src/features/board/api/posts.ts",
+                                                                                 "front/src/features/economy/api/economy.ts",
+                                                                                 "front/src/features/search/api/homeSearch.ts",
+                                                                                 "front/src/features/search/pages/HomeSearchPage.css",
+                                                                                 "front/src/i18n/I18nProvider.tsx"
+                                                                             ],
+                      "front/src/i18n/i18n.ts":  [
+
+                                                 ],
+                      "front/src/i18n/I18nProvider.tsx":  [
+                                                              "front/src/i18n/i18n.ts"
+                                                          ],
+                      "front/src/i18n/LanguageControl.tsx":  [
+                                                                 "front/src/i18n/i18n.ts",
+                                                                 "front/src/i18n/I18nProvider.tsx"
+                                                             ],
+                      "front/src/main.tsx":  [
+                                                 "front/src/app/App.tsx"
+                                             ],
+                      "front/src/theme/DisplaySettingsControl.tsx":  [
+                                                                         "front/src/i18n/i18n.ts",
+                                                                         "front/src/i18n/I18nProvider.tsx",
+                                                                         "front/src/i18n/LanguageControl.tsx",
+                                                                         "front/src/theme/ThemeControl.tsx"
+                                                                     ],
+                      "front/src/theme/ThemeControl.tsx":  [
+                                                               "front/src/i18n/I18nProvider.tsx",
+                                                               "front/src/theme/themeMode.ts",
+                                                               "front/src/theme/ThemeProvider.tsx"
+                                                           ],
+                      "front/src/theme/themeMode.ts":  [
+
+                                                       ],
+                      "front/src/theme/ThemeProvider.tsx":  [
+                                                                "front/src/theme/themeMode.ts"
+                                                            ],
+                      "front/src/theme/variables.css":  [
+
+                                                        ],
+                      "front/src/vite-env.d.ts":  [
+
+                                                  ],
+                      "front/tsconfig.app.json":  [
+
+                                                  ],
+                      "front/tsconfig.json":  [
+
+                                              ],
+                      "front/tsconfig.node.json":  [
+
+                                                   ],
+                      "front/vite.config.ts":  [
+
+                                               ],
+                      "README.md":  [
+
+                                    ],
+                      "scripts/repair-codex-git-access.ps1":  [
+
+                                                              ],
+                      "scripts/repair-git-access.ps1":  [
+
+                                                        ],
+                      "scripts/set-git-remotes.ps1":  [
+
+                                                      ],
+                      "scripts/start-local-agent-worker.ps1":  [
+
+                                                               ],
+                      "scripts/start-local-backend.ps1":  [
+
+                                                          ],
+                      "scripts/start-local-postgres.ps1":  [
+
+                                                           ],
+                      "scripts/use-origin1-as-default-remote.ps1":  [
+
+                                                                    ],
+                      "study/筌띾뜆???以??뺥돩???袁り텕??우퓗-揶쏆뮆而?筌욊쑵六???됯컧.md":  [
+
+                                                                        ],
+                      "study/board-crud-api.md":  [
+
+                                                  ],
+                      "study/dashboard-board-ui.md":  [
+
+                                                      ],
+                      "study/postgresql-rds-rag.md":  [
+
+                                                      ],
+                      "study/study/00-current-ai-system-map.md":  [
+
+                                                                  ],
+                      "study/study/01-agent-workbench-to-backend-flow.md":  [
+
+                                                                            ],
+                      "study/study/02-agent-worker-openai-agents-flow.md":  [
+
+                                                                            ],
+                      "study/study/03-mcp-tools-and-rag-search.md":  [
+
+                                                                     ],
+                      "study/study/04-embeddings-pgvector-and-evidence.md":  [
+
+                                                                             ],
+                      "study/study/05-ai-feature-roadmap.md":  [
+
+                                                               ],
+                      "study/study/README.md":  [
+
+                                                ],
+                      "study/us-econ-ai-agents-concepts.md":  [
+
+                                                              ],
+                      "study/us-econ-ai-tech-stack.md":  [
+
+                                                         ],
+                      "study/us-economic-indicators-business-cycle-synthesis.md":  [
+
+                                                                                   ],
+                      "study/us-economic-indicators-consumer-spending-retail-sales.md":  [
+
+                                                                                         ],
+                      "study/us-economic-indicators-gdp-growth.md":  [
+
+                                                                     ],
+                      "study/us-economic-indicators-industrial-production-capacity.md":  [
+
+                                                                                         ],
+                      "study/us-economic-indicators-inflation.md":  [
+
+                                                                    ],
+                      "study/us-economic-indicators-interest-rates-yield-curve.md":  [
+
+                                                                                     ],
+                      "study/us-economic-indicators-labor-market.md":  [
+
+                                                                       ],
+                      "study/us-economic-indicators-trade-balance-current-account.md":  [
+
+                                                                                        ]
+                  }
+}
