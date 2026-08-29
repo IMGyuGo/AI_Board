@@ -275,3 +275,9 @@ python -m pytest tests
 - 핵심 개념: 전월 대비는 직전 달, 전년 대비는 12개월 전을 비교한다. 비교 기준이 달라 두 변화율의 방향이 항상 같지는 않다.
 - 프로젝트 적용 아이디어: AI 설명에 비교 기간을 명시하고 서로 다른 기간의 수치를 직접 비교하지 않도록 한다.
 - 참고 자료: [BLS CPI FAQ](https://www.bls.gov/cpi/questions-and-answers.htm)
+
+### 2026-08-29 - 계절조정 자료의 선택
+
+- 핵심 개념: 계절조정은 반복되는 계절적 움직임을 분리해 단기 흐름을 읽도록 돕는다. 원계열과 조정계열을 섞으면 변화율 해석이 달라진다.
+- 프로젝트 적용 아이디어: 같은 차트에서 조정 여부를 유지하고 지표 설명에 계절조정 정보를 노출하는 방안을 검토한다.
+- 참고 자료: [BLS 계절조정 FAQ](https://www.bls.gov/cpi/seasonal-adjustment/questions-and-answers.htm)
