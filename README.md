@@ -287,3 +287,9 @@ python -m pytest tests
 - 핵심 개념: 전체 CPI는 여러 품목을 합친 지수다. 개별 품목의 상승률만으로 전체 물가에 미친 영향을 판단하지 않고 상대적 비중도 확인한다.
 - 프로젝트 적용 아이디어: 품목 상승률과 전체 지수에 대한 영향 설명을 구분하고, 가중치의 기준 시점을 함께 기록하는 방안을 검토한다.
 - 참고 자료: [BLS CPI FAQ](https://www.bls.gov/cpi/questions-and-answers.htm)
+
+### 2026-08-31 - 물가 비교의 지역과 모집단
+
+- 핵심 개념: 전국 CPI와 지역 CPI는 대상이 다르며 모든 지역 계열에 계절조정 자료가 제공되는 것은 아니다.
+- 프로젝트 적용 아이디어: 지역·대상 인구·조정 여부가 같은 계열끼리 비교하도록 지표 선택 조건을 설계한다.
+- 참고 자료: [BLS 계절조정 FAQ](https://www.bls.gov/cpi/seasonal-adjustment/questions-and-answers.htm)
