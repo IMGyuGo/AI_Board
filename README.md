@@ -293,3 +293,9 @@ python -m pytest tests
 - 핵심 개념: 전국 CPI와 지역 CPI는 대상이 다르며 모든 지역 계열에 계절조정 자료가 제공되는 것은 아니다.
 - 프로젝트 적용 아이디어: 지역·대상 인구·조정 여부가 같은 계열끼리 비교하도록 지표 선택 조건을 설계한다.
 - 참고 자료: [BLS 계절조정 FAQ](https://www.bls.gov/cpi/seasonal-adjustment/questions-and-answers.htm)
+
+### 2026-09-01 - 명목 GDP와 실질 GDP
+
+- 핵심 개념: 명목 GDP에는 가격과 수량 변화가 함께 반영된다. 실질 GDP는 물가 영향을 조정한 생산량 변화를 읽는 데 사용한다.
+- 프로젝트 적용 아이디어: 성장 설명에서 명목·실질 구분을 먼저 확인하고 서로 다른 가격 기준의 수치를 합치지 않는다.
+- 참고 자료: [BEA 명목·실질 GDP FAQ](https://www.bea.gov/help/faq/1168)
