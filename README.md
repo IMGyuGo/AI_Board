@@ -347,3 +347,9 @@ python -m pytest tests
 - 핵심 개념: FRED 관측기간은 경제 활동의 대상 시점이고, 실시간 기간은 해당 정보가 알려져 있던 시점을 다룬다.
 - 프로젝트 적용 아이디어: 관측일과 데이터 버전 기준일을 별도 필드로 다뤄 과거 분석에 미래 개정치가 섞이지 않도록 설계한다.
 - 참고 자료: [FRED ALFRED API 설명](https://fred.stlouisfed.org/docs/api/fred/alfred.html)
+
+### 2026-09-10 - FRED 계열 메타데이터
+
+- 핵심 개념: 계열 ID만으로 수치를 해석하지 않고 단위·빈도·계절조정·설명도 함께 읽는다.
+- 프로젝트 적용 아이디어: 지표 등록 시 메타데이터를 점검하고 단위가 바뀌면 기존 표시 형식과의 호환성을 확인한다.
+- 참고 자료: [FRED 계열 API](https://fred.stlouisfed.org/docs/api/fred/series.html)
