@@ -353,3 +353,9 @@ python -m pytest tests
 - 핵심 개념: 계열 ID만으로 수치를 해석하지 않고 단위·빈도·계절조정·설명도 함께 읽는다.
 - 프로젝트 적용 아이디어: 지표 등록 시 메타데이터를 점검하고 단위가 바뀌면 기존 표시 형식과의 호환성을 확인한다.
 - 참고 자료: [FRED 계열 API](https://fred.stlouisfed.org/docs/api/fred/series.html)
+
+### 2026-09-11 - FRED 결측값 처리
+
+- 핵심 개념: FRED 관측 응답에는 숫자 대신 점으로 표시된 결측값이 나올 수 있다. 이를 0으로 바꾸면 경제적 의미가 달라진다.
+- 프로젝트 적용 아이디어: 결측값은 비어 있는 상태로 유지하고 AI 설명에서도 실제 0과 구별하도록 검토한다.
+- 참고 자료: [FRED 관측값 API](https://fred.stlouisfed.org/docs/api/fred/series_observations.html)
