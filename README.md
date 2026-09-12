@@ -359,3 +359,9 @@ python -m pytest tests
 - 핵심 개념: FRED 관측 응답에는 숫자 대신 점으로 표시된 결측값이 나올 수 있다. 이를 0으로 바꾸면 경제적 의미가 달라진다.
 - 프로젝트 적용 아이디어: 결측값은 비어 있는 상태로 유지하고 AI 설명에서도 실제 0과 구별하도록 검토한다.
 - 참고 자료: [FRED 관측값 API](https://fred.stlouisfed.org/docs/api/fred/series_observations.html)
+
+### 2026-09-12 - 조회 범위와 페이지 누락
+
+- 핵심 개념: FRED 관측값 API는 limit·offset·정렬 조건을 제공한다. 첫 응답만으로 전체 이력을 받았다고 단정할 수 없다.
+- 프로젝트 적용 아이디어: 기간과 건수를 확인해 필요한 관측값이 모두 수집됐는지 검증하는 절차를 설계한다.
+- 참고 자료: [FRED 관측값 API](https://fred.stlouisfed.org/docs/api/fred/series_observations.html)
