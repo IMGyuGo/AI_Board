@@ -365,3 +365,9 @@ python -m pytest tests
 - 핵심 개념: FRED 관측값 API는 limit·offset·정렬 조건을 제공한다. 첫 응답만으로 전체 이력을 받았다고 단정할 수 없다.
 - 프로젝트 적용 아이디어: 기간과 건수를 확인해 필요한 관측값이 모두 수집됐는지 검증하는 절차를 설계한다.
 - 참고 자료: [FRED 관측값 API](https://fred.stlouisfed.org/docs/api/fred/series_observations.html)
+
+### 2026-09-13 - 지표 빈도 변환과 집계
+
+- 핵심 개념: 일별 자료를 월별로 바꿀 때 평균·합계·기말값은 서로 다른 질문에 답한다. FRED는 집계 방법을 선택할 수 있다.
+- 프로젝트 적용 아이디어: 잔액·흐름 등 지표 성격에 맞는 집계 방법을 명시하고 원래 빈도도 보존하는 방안을 검토한다.
+- 참고 자료: [FRED 관측값 API](https://fred.stlouisfed.org/docs/api/fred/series_observations.html)
