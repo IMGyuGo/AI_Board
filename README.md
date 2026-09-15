@@ -377,3 +377,9 @@ python -m pytest tests
 - 핵심 개념: FRED에서 변화율로 변환한 응답을 다시 수준값처럼 취급하면 잘못된 변화율을 계산하게 된다.
 - 프로젝트 적용 아이디어: 원값과 변환 옵션을 함께 기록하고 프론트·백엔드 중 어느 쪽에서 계산하는지 일관되게 정한다.
 - 참고 자료: [FRED 관측값 API](https://fred.stlouisfed.org/docs/api/fred/series_observations.html)
+
+### 2026-09-15 - 발표일과 빈티지 변경일
+
+- 핵심 개념: FRED의 빈티지 날짜 목록은 새 값이나 개정으로 계열이 바뀐 날짜를 다룬다. 값이 바뀌지 않은 발표일은 제외될 수 있다.
+- 프로젝트 적용 아이디어: 발표 일정과 값의 변경 이력을 별도로 관리하는 방안을 검토한다.
+- 참고 자료: [FRED 빈티지 날짜 API](https://fred.stlouisfed.org/docs/api/fred/series_vintagedates.html)
