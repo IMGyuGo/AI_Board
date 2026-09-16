@@ -1,499 +1,231 @@
-# AI_w15-16
+# AI가 읽는 미국경제
 
-AI 적용 기술을 활용한 게시판 서비스 과제 저장소입니다. 현재는 Spring Boot 백엔드와 Ionic React 프론트엔드의 기본 구조, 백엔드 API 연동, Swagger 문서, GitHub Actions 기반 CI/CD 자동화, AWS ECS 배포 설계까지 정리되어 있습니다.
+**미국 경제 지표를 읽고, AI의 해석을 확인하고, 그 답변의 근거까지 따라가는 대시보드.**
 
-![프로젝트 개요](img.png)
+CPI·고용·금리처럼 흩어진 지표를 한 화면에 모으고, AI 브리핑과 후속 질문을 통해 한국 경제와의 연결을 살펴보는 프로젝트입니다. 경제 토론 게시판은 관련 맥락을 검색하는 RAG 데이터로도 사용합니다.
 
-## 프로젝트 개요
+이 프로젝트에서 집중한 질문은 **“AI가 이렇게 답한 이유를 사용자가 확인할 수 있는가?”**입니다. 수치의 출처와 기준일, 답변이 인용한 근거, 실행 단계와 실패 상태를 함께 다룹니다.
 
-- 기본 게시판 서비스에 AI 기능을 단계적으로 결합하는 것을 목표로 합니다.
-- 백엔드는 Spring Boot 기반 로그인 화면, 보안 설정, JSON API, Swagger UI를 제공합니다.
-- 프론트엔드는 React, TypeScript, Vite, Ionic React, Capacitor 기반으로 구성했습니다.
-- 배포 자동화는 GitHub Actions, GitHub OIDC, Amazon ECR, Amazon ECS Fargate를 기준으로 설계했습니다.
-- 과제 요구사항, 회의 기록, 작업 로그, 개념 문서는 `docs/`와 `myself/` 아래에 관리합니다.
+[설계와 문제 해결](#설계와-문제-해결) · [코드 탐색](#코드-탐색) · [로컬 실행](#로컬-실행) · [검증](#검증) · [현재 범위와 다음 과제](#현재-범위와-다음-과제)
 
-## 기술 스택
+## 사용자는 무엇을 할 수 있나요?
 
-### Backend
+| 흐름 | 확인할 수 있는 것 |
+| --- | --- |
+| **경제 읽기** | 핵심 지표의 값·이전치·변화량·기준일·출처, 지표 이력, AI 브리프, 한국수출입은행 기준 환율 |
+| **AI에게 질문하기** | 저장한 브리핑을 기준으로 초보자 설명·한국 영향·지표 심화·근거 확인 Agent와 대화, 메시지별 근거와 실행 기록 조회 |
+| **토론 이어가기** | 경제 주제별 게시글·댓글·태그·좋아요·신고·알림, 관련 토론을 찾아 답변 근거로 연결 |
+| **개인 공간 관리하기** | 로그인, 대시보드 표시 설정, 관리자 콘텐츠 숨김·감사 로그·MFA |
 
-- Java 21
-- Spring Boot 4
-- Spring Security
-- Thymeleaf
-- Springdoc OpenAPI
-- Maven
-- Docker
+공개 대시보드는 로그인 없이 조회할 수 있습니다. Agent 실행과 개인화, 토론 API는 인증 경계 안에 있습니다. 한국어·영어·중국어 간체/번체·일본어를 지원합니다.
 
-### Frontend
+## 전체 구조
 
-- React 18
-- TypeScript
-- Vite
-- Ionic React
-- Capacitor
-- ESLint
-
-### Automation And AWS
-
-- GitHub Actions
-- GitHub Projects 자동화
-- Slack webhook 알림
-- GitHub OIDC 기반 AWS 인증
-- Amazon ECR
-- Amazon ECS Fargate
-- Application Load Balancer 기반 접속 구조
-- CloudWatch Logs 기반 운영 로그 구조
-
-## 디렉터리 구조
-
-```text
-.
-+-- .github/
-|   +-- workflows/                  # CI, 백엔드/프론트 배포, AWS OIDC 검증, 프로젝트 자동화
-+-- agent-worker/                   # Python 기반 AI Agent worker와 MCP 도구 서버
-|   +-- app/                        # Agent 실행 진입점, guardrail, MCP tool, RAG 검색 보조 로직
-|   +-- tests/                      # Agent worker 단위 테스트
-|   +-- requirements.txt            # Python 의존성 목록
-+-- backend/                        # Spring Boot 백엔드 API 서버
-|   +-- src/main/java/com/junglecamp/backend/
-|   |   +-- admin/                  # 관리자 콘솔 API, 숨김 콘텐츠/감사 로그 관리
-|   |   +-- agent/                  # Agent run 저장, 조회, 백엔드 연동 API
-|   |   +-- auth/                   # JWT 쿠키 인증, 이메일 인증, OAuth, MFA, CAPTCHA, rate limit
-|   |   +-- board/                  # 토론 게시글, 댓글, 태그, 좋아요, 신고, 알림, RAG 연동
-|   |   +-- config/                 # Spring Security, CORS, OpenAPI, 공통 설정
-|   |   +-- economy/                # 경제 지표, 일정, 리포트, AI 브리프, 동기화 서비스
-|   |   +-- i18n/                   # 서버 메시지 국제화 보조
-|   |   +-- rag/                    # pgvector 기반 문서/청크 인덱싱 서비스
-|   |   +-- search/                 # 홈 통합 검색 API
-|   |   +-- system/                 # 상태 확인, 시스템성 API
-|   |   +-- user/                   # 사용자, 대시보드 선호 설정, 프로필 관리
-|   |   +-- web/                    # 웹 페이지/리다이렉트 보조 컨트롤러
-|   +-- src/main/resources/
-|   |   +-- db/migration/           # Flyway SQL migration, PostgreSQL/pgvector 스키마
-|   |   +-- static/                 # 백엔드 정적 리소스
-|   |   +-- templates/              # Thymeleaf 템플릿
-|   |   +-- application.properties  # 서버 기본 설정
-|   +-- src/test/java/              # 백엔드 통합/서비스/인증 테스트
-|   +-- Dockerfile                  # 백엔드 컨테이너 이미지 빌드
-|   +-- pom.xml                     # Java/Maven 의존성 정의
-+-- common/
-|   +-- workflows/                  # 대화형 작업 트리거와 공통 작업 절차
-+-- docs/                           # 프로젝트 문서 허브
-|   +-- concepts/                   # 주요 구현 개념, 패턴, 검증 방법
-|   +-- prompt-history/             # 사용자 동의가 있을 때만 저장하는 프롬프트 이력
-|   +-- superpowers/                # 설계/구현 계획 문서
-|   +-- work-logs/                  # 날짜별 작업 로그와 검증 결과
-+-- front/                          # Ionic React + Vite 프론트엔드
-|   +-- src/
-|   |   +-- api/                    # 공통 백엔드 요청 유틸과 현재 사용자 타입
-|   |   +-- app/                    # Ionic 앱 셸, 라우터, 보호 라우트
-|   |   +-- features/
-|   |   |   +-- admin/              # 관리자 콘솔 화면/API
-|   |   |   +-- agents/             # Agent workbench 화면/API
-|   |   |   +-- auth/               # 로그인/회원가입, 이메일 코드 인증, MFA, CAPTCHA UI
-|   |   |   +-- board/              # 토론 게시판, 댓글, 관리자 숨김/삭제 UI
-|   |   |   +-- economy/            # 홈 대시보드, 경제 일정/리포트/알림 모달
-|   |   |   +-- profile/            # My Page와 대시보드 표시 설정
-|   |   |   +-- search/             # 홈 통합 검색 결과 화면
-|   |   +-- i18n/                   # 다국어 문구와 언어 컨트롤
-|   |   +-- pages/                  # 공통 페이지 진입점
-|   |   +-- theme/                  # 테마, 다크모드, 표시 설정 UI
-|   +-- package.json                # 프론트엔드 npm 스크립트와 의존성
-|   +-- vite.config.ts              # Vite 개발 서버와 proxy 설정
-|   +-- capacitor.config.ts         # Capacitor 앱 설정
-+-- scripts/                        # 로컬 PostgreSQL, 백엔드, Agent worker 실행 스크립트
-+-- study/                          # 학습 노트, 기술 조사, 마이크로서비스 개발 절차 정리
-+-- myself/                         # 회의록과 개인 정리 노트
-+-- AGENTS.md                       # Codex 작업 규칙과 문서화 규칙
-+-- README.md                       # 프로젝트 소개와 실행/검증 가이드
-+-- 과제내용.md                     # 과제 요구사항 정리
-+-- *.drawio                        # AWS/CI/CD 아키텍처 다이어그램
+```mermaid
+flowchart LR
+    U[사용자] --> F["React · Ionic<br/>대시보드 / 토론 / Agent"]
+    F -->|REST API| B["Spring Boot<br/>인증 · 데이터 · 근거 검증"]
+    S["FRED · 한국수출입은행 등"] -->|수집·동기화| B
+    B <-->|캐시 · 사용자 · 실행 기록| D[(PostgreSQL + pgvector)]
+    B -->|브리핑·대화 요청| W["Python FastAPI Worker<br/>OpenAI Agents SDK"]
+    W <-->|생성| L[OpenAI]
+    W -->|도구 호출| M["MCP 도구<br/>지표 조회 · 토론 검색"]
+    M -->|내부 API| B
 ```
 
-### 구조를 보는 기준
+**Spring은 데이터와 권한을 관리하고, Python은 Agent 실행을 담당합니다.** Worker가 반환한 결과는 Spring에서 근거를 검증한 뒤 실행 기록·메시지·근거 항목으로 저장합니다. 토론 검색도 Spring 내부 API를 통해 접근합니다.
 
-- `backend/`, `front/`, `agent-worker/`는 실행 가능한 애플리케이션 단위입니다. 현재는 하나의 저장소에 함께 두고 있지만, 책임은 백엔드 API, 프론트 UI, AI Agent worker로 나뉩니다.
-- `backend/src/main/java/com/junglecamp/backend/*`는 기능 도메인 중심으로 나뉩니다. 인증, 경제 데이터, 토론, RAG, Agent, 관리자 기능을 각각 독립 패키지로 관리합니다.
-- `front/src/features/*`는 화면 기능 기준으로 나뉩니다. 각 feature 안에 API 호출 모듈, 페이지 컴포넌트, CSS를 함께 배치해 화면 단위 변경 범위를 좁힙니다.
-- `docs/concepts/`는 코드에 적용한 개념을 설명하고, `docs/work-logs/`는 실제 작업 기록과 검증 결과를 남깁니다.
-- `study/`는 구현 산출물이 아니라 학습과 의사결정 정리 공간입니다. ERD, 아키텍처, MSA 진행 절차 같은 발표/회고 자료가 들어갑니다.
-- `node_modules/`, `backend/target/`, 로그 파일, 로컬 `.env.*` 값은 실행 중 생성되거나 개인 환경에 속하므로 구조 설명에서는 제외합니다.
-
-## 현재 구현 내용
-
-### Backend
-
-- 커스텀 로그인 페이지(`/login`)와 인증 후 프론트 게시판 화면 이동을 제공합니다.
-- 로그인 성공 후 이동할 프론트 URL은 `FRONTEND_BOARD_URL` 환경 변수로 변경할 수 있으며 기본값은 `http://localhost:5173/home`입니다.
-- 테스트용 인메모리 계정을 사용합니다.
-- Spring Security 보안 체인을 웹 페이지용과 API용으로 분리했습니다.
-- `/api/status`는 공개 상태 확인 API입니다.
-- `/api/me`는 인증된 사용자 이름을 반환합니다.
-- API 인증 실패는 HTML 로그인 리다이렉트가 아니라 `401 Unauthorized`로 응답합니다.
-- Swagger UI(`/swagger-ui.html`)와 OpenAPI JSON(`/v3/api-docs`)을 제공합니다.
-
-테스트 계정:
+대시보드의 **AI 브리프**는 경제 데이터 동기화 과정에서 생성하는 요약입니다. **Agent 작업공간**은 사용자가 브리핑을 실행하고, 해당 실행 기록에 이어 질문하는 별도 흐름입니다.
 
 ```text
-ID: user
-PW: password
+AI/
+├── front/                React + TypeScript + Ionic 사용자 화면
+│   └── src/features/     economy · agents · board · auth · admin · profile · search
+├── backend/              Spring Boot API, 인증, 데이터 수집·저장
+│   └── src/main/
+│       ├── java/com/junglecamp/backend/
+│       │   ├── economy/  지표·환율 수집, 캐시, AI 브리프
+│       │   ├── agent/    Worker 호출, 근거 검증, 실행 기록
+│       │   ├── board/    토론과 댓글, 삭제 정책
+│       │   ├── rag/      토론 인덱싱, 임베딩·검색
+│       │   └── auth/    JWT·이메일 인증·OAuth·관리자 MFA
+│       └── resources/db/migration/  Flyway 스키마 변경 이력
+├── agent-worker/         FastAPI, Agents SDK, MCP, LangChain 호환 Retriever
+├── scripts/              로컬 DB·서버 실행 보조
+├── .github/workflows/    테스트·lint·build, AWS OIDC 확인, 협업 자동화
+├── docs/                 설계 개념·작업 기록·배포 가이드
+├── study/                경제 지표와 AI 구현 학습 기록
+└── node-transition/      Spring API 계약을 기준으로 한 NestJS 전환 실습
 ```
 
-### Frontend
+백엔드는 도메인별 패키지 안에 controller/service/repository 등을 두고, 프론트는 기능별로 API와 화면을 묶었습니다. `node-transition/`은 학습용 실험이며 현재 서비스의 백엔드는 Spring입니다.
 
-- Vite 기반 React TypeScript 프로젝트를 구성했습니다.
-- Ionic React 앱 셸, 라우터, 홈 화면, 테마 파일을 추가했습니다.
-- `front/src/api/backend.ts`에서 백엔드 API 호출을 모듈화했습니다.
-- 개발 서버에서 `/api/*` 요청은 Vite proxy를 통해 `http://localhost:8080`으로 전달됩니다.
-- 홈 화면은 백엔드 연결 상태와 인증 상태를 표시하고, 인증이 없으면 백엔드 로그인 화면으로 이동할 수 있게 구성했습니다.
-- Capacitor 설정과 `cap:sync`, `cap:copy` 스크립트를 준비했습니다.
+## 설계와 문제 해결
 
-### Documentation
+### 1. 근거 없는 AI 답변을 어떻게 다룰 것인가?
 
-- `docs/work-logs/`에는 실제 수행 작업, 변경 파일, 검증 결과를 기록합니다.
-- `docs/concepts/`에는 보안 체인, Swagger, AWS IAM, CI/CD 배포 패턴 같은 주요 개념을 정리합니다.
-- `docs/prompt-history/`는 사용자가 프롬프트 원문 저장을 명확히 승인한 경우에만 사용합니다.
-- `docs/ecs-deployment-testing-guide.md`에는 ECS 실행 상태에서 서버 업데이트가 배포되는 흐름과 테스트 방법을 별도로 정리했습니다.
+Agent 응답에 지표·이벤트·뉴스·RAG 근거 ID와 출처를 담고, Python과 Spring에서 검증합니다. 모르는 지표 ID나 출처 없는 근거는 거부하며, 근거 없이 확정한 채팅 응답은 `insufficient_evidence`로 전환합니다. Worker 호출에 실패하면 fallback 상태와 실행 단계를 기록합니다.
 
-## 로컬 실행 방법
+- **코드:** [Worker guardrail](agent-worker/app/guardrails.py), [AgentService](backend/src/main/java/com/junglecamp/backend/agent/service/AgentService.java), [Agent 실행 저장소](backend/src/main/java/com/junglecamp/backend/agent/repository/AgentRunRepository.java)
+- **검증 근거:** [Worker 테스트](agent-worker/tests/test_agent_worker.py)의 `test_strict_chat_evidence_downgrades_answered_response_without_evidence`, [API 통합 테스트](backend/src/test/java/com/junglecamp/backend/ApiIntegrationTests.java)의 `rejectsUnsourcedAgentEvidenceAndStoresFailedRun`
+- **남은 질문:** 출처 URL과 ID가 있다는 것만으로 내용의 사실성까지 보장되지는 않습니다. 인용 내용과 답변의 일치도를 어떻게 평가할 것인가?
 
-### Backend
+### 2. 새로고침할 때마다 외부 API와 LLM을 호출해야 할까?
+
+경제 지표와 생성된 브리프를 DB에 저장하고, 일반 조회는 저장된 결과를 사용합니다. 동기화는 기본 4시간 간격이며 한국 시간 기준 일일 실행 제한을 둡니다. OpenAI 생성 실패 시 fallback 브리프를 새 정상 결과처럼 저장하지 않습니다.
+
+현재 구현에는 예외가 있습니다. 저장된 브리프가 `fallback:openai-error`이면 백그라운드 갱신을 요청하고, 환율도 오래된 캐시를 감지하면 별도로 갱신합니다. 따라서 “조회에서는 외부 호출이 전혀 없다”는 구조는 아닙니다.
+
+- **코드:** [EconomySyncService](backend/src/main/java/com/junglecamp/backend/economy/service/EconomySyncService.java), [EconomyDashboardService](backend/src/main/java/com/junglecamp/backend/economy/service/EconomyDashboardService.java)
+- **검증 근거:** [대시보드 서비스 테스트](backend/src/test/java/com/junglecamp/backend/economy/service/EconomyDashboardServiceTests.java)는 일반 조회와 오류 브리프의 백그라운드 갱신을 각각 검사합니다.
+- **남은 질문:** 갱신이 실패했을 때 오래된 데이터임을 어떻게 알릴 것인가? 서버가 여러 대가 되면 프로세스 내부의 중복 실행 방지는 충분한가?
+
+### 3. 사용자가 삭제한 글을 AI가 다시 인용해도 될까?
+
+댓글이 있는 게시글은 본문을 `삭제된 게시글입니다.`로 가리는 tombstone 방식으로 처리해 대화 맥락을 보존합니다. 동시에 해당 글의 RAG 인덱스를 삭제합니다. 관리자 숨김 처리된 글은 RAG 검색에서 제외합니다.
+
+검색은 쿼리 임베딩이 있으면 pgvector 유사도 검색을 우선하고, 상황에 따라 메모리 벡터 점수 계산 또는 키워드 검색으로 이어집니다. 공식 경제 지표와 사용자 작성 토론은 서로 다른 종류의 근거로 다룹니다.
+
+- **코드:** [게시글 삭제 처리](backend/src/main/java/com/junglecamp/backend/board/service/BoardPostService.java), [RagIndexService](backend/src/main/java/com/junglecamp/backend/rag/service/RagIndexService.java), [DiscussionRetriever](agent-worker/app/discussion_retriever.py)
+- **검증 근거:** [API 통합 테스트](backend/src/test/java/com/junglecamp/backend/ApiIntegrationTests.java)의 `deletingPostWithVisibleCommentsKeepsThreadAsDeletedPostTombstone`, `agentRagSearchPrefersVectorSimilarDiscussionPosts`
+- **남은 질문:** 신규 검색에서 제외한 뒤에도 과거에 저장된 답변과 근거는 어떻게 관리해야 할까?
+
+### 4. 댓글 중복은 화면 문제일까, 조회 문제일까?
+
+게시글 상세에서 태그와 댓글 컬렉션을 함께 fetch join하면 태그 3개 × 댓글 2개가 6개 행으로 늘어날 수 있습니다. 상세 조회는 태그만 entity graph로 가져오고 댓글은 서비스 트랜잭션 안에서 별도 로딩하도록 구성했습니다.
+
+- **코드:** [BoardPostRepository](backend/src/main/java/com/junglecamp/backend/board/repository/BoardPostRepository.java)
+- **검증 근거:** [API 통합 테스트](backend/src/test/java/com/junglecamp/backend/ApiIntegrationTests.java)의 `postDetailDoesNotDuplicateCommentsWhenPostHasMultipleTags`
+- **설계 기록:** [원인과 조회 방식의 선택](docs/concepts/board-comment-fetch-join-duplication.md)
+
+## 코드 탐색
+
+| 보고 싶은 판단 | 시작할 파일 |
+| --- | --- |
+| 화면에서 실제 API까지의 연결 | [HomePage](front/src/features/economy/pages/HomePage.tsx) → [경제 API·타입](front/src/features/economy/api/economy.ts) → [Controller](backend/src/main/java/com/junglecamp/backend/economy/controller/UsEconomyDashboardController.java) |
+| Agent 실행과 근거를 보여주는 방법 | [AgentWorkbench](front/src/features/agents/pages/AgentWorkbench.tsx) → [Agent API](front/src/features/agents/api/agents.ts) → [Worker 실행](agent-worker/app/service.py) |
+| 쿠키 인증과 CSRF, 관리자 보호 | [SecurityConfig](backend/src/main/java/com/junglecamp/backend/config/SecurityConfig.java), [JwtCsrfFilter](backend/src/main/java/com/junglecamp/backend/auth/filter/JwtCsrfFilter.java), [인증 설계](docs/concepts/jwt-local-auth-and-protected-workspaces.md) |
+| 데이터 모델이 발전한 과정 | [Flyway migration](backend/src/main/resources/db/migration), [개념 문서](docs/concepts/README.md) |
+| 도메인을 이해하고 구현으로 연결한 과정 | [경제 지표 종합 학습](study/us-economic-indicators-business-cycle-synthesis.md), [AI 시스템 학습 지도](study/study/00-current-ai-system-map.md) |
+
+### 기술 선택
+
+| 영역 | 기술 | 맡긴 책임 |
+| --- | --- | --- |
+| 화면 | React 18, TypeScript, Ionic 8, Vite 6 | 기능별 화면과 API 타입, 앱 셸 |
+| API | Java 21, Spring Boot 4, Security, JPA·JDBC | 인증·권한, 도메인 로직, 수집·저장 |
+| AI | Python, FastAPI, OpenAI Agents SDK, MCP, LangChain Core | Agent 실행, 도구 호출, Retriever 연결 |
+| 데이터 | PostgreSQL 16, pgvector, Flyway | 지표 캐시, 실행·근거 기록, 벡터 검색, 스키마 이력 |
+| 검증 | JUnit, Spring Boot Test, pytest, ESLint, TypeScript | API 계약·실패 경로·근거 검증·정적 검사 |
+| 자동화 | GitHub Actions, Docker, AWS OIDC | CI, 컨테이너 빌드 정의, AWS 역할 인증 확인 |
+
+## 로컬 실행
+
+Windows PowerShell 기준입니다. Java 21, Node.js 20, Python 3.12, Docker를 준비합니다. 아래 명령은 저장소 루트에서 시작합니다.
+
+### 1. 환경 설정과 PostgreSQL
 
 ```powershell
+# 기존 .env.local이 없을 때만 예제를 복사합니다.
+if (-not (Test-Path .env.local)) { Copy-Item .env.local.example .env.local }
+.\scripts\start-local-postgres.ps1
+```
+
+DB 준비 확인이 실패하면 컨테이너 기동 후 같은 스크립트를 다시 실행합니다. [환경 변수 예제](.env.local.example)를 기준으로 필요한 값을 채웁니다.
+
+| 사용 범위 | 필요한 설정 |
+| --- | --- |
+| 로컬 DB 연결 | `DB_URL`, `DB_USERNAME`, `DB_PASSWORD` — 예제와 DB 스크립트의 기본값이 일치 |
+| FRED 지표·AI 생성·임베딩 | `FRED_API_KEY`, `OPENAI_API_KEY` 및 각 `OPENAI_*_MODEL` |
+| 기준 환율 | `KOREAEXIM_API_KEY` |
+| 이메일 가입·인증 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD`, `SMTP_FROM` |
+| Google 로그인 | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, 필요 시 `GOOGLE_REDIRECT_URI` |
+| Agent 연결 | Spring과 Worker의 `AGENT_WORKER_TOKEN` 일치, `AGENT_WORKER_URL`, `AGENT_MCP_URL` |
+
+Google 로그인을 사용하지 않으면 예제의 빈 `GOOGLE_CLIENT_ID=`, `GOOGLE_CLIENT_SECRET=`, `GOOGLE_REDIRECT_URI=` 행을 제거해 서버 기본 설정을 사용합니다. 빈 값은 Spring OAuth 설정 초기화에 영향을 줄 수 있습니다. 실제 Google 로그인에는 등록한 클라이언트와 콜백 설정이 필요합니다.
+
+API 키가 없으면 실제 경제 데이터나 AI 답변이 채워지지 않으며, 빈 데이터·fallback 상태가 나타날 수 있습니다. 외부 수집 없이 화면과 API를 확인하려면 `ECON_SYNC_ENABLED=false`, `KOREAEXIM_EXCHANGE_ENABLED=false`로 설정합니다. 로컬 기본 비밀값은 배포 전에 교체하고 실제 `.env.local`은 커밋하지 않습니다.
+
+### 2. 백엔드·프론트엔드 실행
+
+각각 별도 터미널에서 실행합니다.
+
+```powershell
+# 터미널 A — 저장소 루트에서
 cd backend
 .\mvnw.cmd spring-boot:run
 ```
 
-브라우저 접속:
-
-```text
-http://localhost:8080
-http://localhost:8080/swagger-ui.html
-http://localhost:8080/api/status
-```
-
-### Frontend
-
 ```powershell
+# 터미널 B — 저장소 루트에서
 cd front
-npm install
+npm ci
 npm run dev
 ```
 
-기본 Vite 개발 서버 주소:
+[홈 대시보드](http://localhost:5173/home) · [API 상태](http://localhost:8080/api/status) · [Swagger UI](http://localhost:8080/swagger-ui.html)
 
-```text
-http://localhost:5173
+프론트의 `/api/*` 요청은 개발 중 Vite proxy를 통해 `localhost:8080`으로 전달됩니다. 현재 인증은 이메일 가입·인증 또는 Google OAuth를 사용합니다.
+
+### 3. Agent Worker 실행
+
+Agent 기능을 사용할 때 별도 터미널에서 실행합니다. 가상환경의 Python을 활성화한 뒤 스크립트가 루트 `.env.local`을 읽도록 합니다.
+
+```powershell
+# 터미널 C — 저장소 루트에서
+python -m venv agent-worker/.venv
+.\agent-worker\.venv\Scripts\Activate.ps1
+python -m pip install -r agent-worker/requirements.txt
+.\scripts\start-local-agent-worker.ps1
 ```
 
-## AI Agent 환경 변수 준비
+Worker는 `localhost:8090`, MCP는 `/mcp/`에서 동작합니다. 로그인 후 Agent 작업공간에서 브리핑을 생성하고 질문하면 실행 기록과 근거를 확인할 수 있습니다.
 
-Agent 기능을 붙일 때는 루트 `.env.agents.example`을 기준으로 로컬은 `.env.agents.local`, 배포는 GitHub Secrets/ECS/Secrets Manager에 같은 키를 등록합니다. 실제 값은 커밋하지 않습니다.
+<details>
+<summary>주요 API와 응답의 확인 지점</summary>
 
-사람이 직접 입력할 값은 `OPENAI_API_KEY`, `OPENAI_AGENT_MODEL`, 그리고 실데이터 연결 시 `BLS_API_KEY`, `FRED_API_KEY`, `NEWS_SEARCH_API_KEY`입니다. Agent 관련 키가 늘어나면 `.env.agents.example`과 이 짧은 절차를 함께 갱신합니다.
+| API | 역할 | 확인할 항목 |
+| --- | --- | --- |
+| `GET /api/us-economy/dashboard` | 공개 경제 대시보드 | `metrics`, `brief.generationStatus`, `exchangeRates`, 지표별 `sourceUrl`·`baseDate` |
+| `GET /api/us-economy/metrics/{metricId}/history` | 공개 지표 이력 | 기간별 관측치와 출처 비교 |
+| `POST /api/agents/runs/briefing` | 인증 사용자 브리핑 생성 | 실행 ID, 단계, 근거 |
+| `POST /api/agents/runs/{runId}/chat` | 소유한 실행 기록에 질문 | `answerStatus`, 근거 ID·항목 |
+| `GET /api/agents/runs/{runId}` | 실행 상세 조회 | 저장된 메시지·근거·실행 단계 |
 
-## 검증 명령
+변경 API는 인증 쿠키와 `X-XSRF-TOKEN`을 사용합니다. 프론트의 [공통 API 유틸](front/src/api/backend.ts)과 [Agent Controller](backend/src/main/java/com/junglecamp/backend/agent/controller/AgentController.java)에서 호출 계약을 확인할 수 있습니다.
 
-### Backend
+</details>
+
+## 검증
+
+각 블록을 저장소 루트의 별도 터미널에서 실행합니다. 설계 사례별 핵심 회귀 테스트는 위의 코드·검증 근거 링크에서 확인할 수 있습니다.
 
 ```powershell
 cd backend
 .\mvnw.cmd test
 ```
 
-### Frontend
-
 ```powershell
 cd front
+npm ci
 npm run lint
 npm run build
 ```
 
-### Git Ignore 확인
-
-로컬 Maven 저장소 캐시가 Git에 올라가지 않도록 루트 `.gitignore`에 `.m2/`, `**/.m2/` 패턴을 추가했습니다.
-
 ```powershell
-git check-ignore -v backend/.m2/repository/ch/qos/logback/logback-classic/1.5.32/logback-classic-1.5.32.jar
+.\agent-worker\.venv\Scripts\Activate.ps1
+cd agent-worker
+python -m pytest tests
 ```
 
-## CI/CD 자동화
+[CI 정의](.github/workflows/ci.yml)는 `gyugo` 브랜치 push와 해당 브랜치 대상 PR에서 백엔드 테스트, 프론트 lint/build, Worker 테스트를 실행합니다. 백엔드 테스트는 H2를 사용하므로 PostgreSQL migration과 pgvector 동작은 실제 PostgreSQL에서도 별도 확인해야 합니다.
 
-현재 자동화는 `gyugo` 브랜치를 기준으로 동작합니다.
+## 현재 범위와 다음 과제
 
-### CI: `.github/workflows/ci.yml`
+- **현재 구현:** 경제 데이터 수집·캐시, AI 브리프, 근거를 저장하는 Agent 작업공간, 토론 RAG, 인증·관리자 기능. 외부 서비스 연결에는 각 키와 실행 환경이 필요합니다.
+- **배포:** Dockerfile과 [AWS OIDC 확인 workflow](.github/workflows/aws-role.yml), [ECS 배포 가이드](docs/ecs-deployment-testing-guide.md)가 있습니다. 현재 저장소에는 ECS 자동 배포 workflow가 없으며, 가이드의 배포 완료 여부는 운영 환경에서 따로 확인해야 합니다.
+- **AI 품질:** 근거 ID·출처·응답 상태 검증을 넘어, 인용 정확도·검색 품질을 평가하는 데이터셋과 반복 평가가 다음 과제입니다.
+- **확장성:** pgvector 인덱스와 검색 품질·지연 측정, 여러 서버에서의 동기화 중복 방지, 삭제된 원문을 인용한 과거 답변의 보존 정책을 더 다뤄야 합니다.
+- **전환 실험:** [NestJS API 계약 실습](node-transition/README.md)은 기존 Spring 응답을 기준으로 호환성을 확인하는 학습 공간입니다. 전체 서비스 전환을 완료한 상태는 아닙니다.
 
-- 트리거: `gyugo` 브랜치 push, `gyugo` 대상 pull request
-- 백엔드: Java 21 설정 후 `./mvnw test` 실행
-- 프론트엔드: Node 20 설정, `npm ci`, `npm run build` 실행
-
-### Backend ECS Deploy: `.github/workflows/deploy.yml`
-
-- 트리거: `gyugo` 브랜치 push, 수동 `workflow_dispatch`
-- GitHub OIDC로 AWS 역할을 Assume합니다.
-- Amazon ECR에 로그인합니다.
-- `backend/Dockerfile`로 백엔드 이미지를 빌드합니다.
-- 이미지를 `489535778783.dkr.ecr.ap-northeast-2.amazonaws.com/nammanmu/gyugo/backend:${GITHUB_SHA}` 태그로 푸시합니다.
-- 현재 ECS task definition을 내려받습니다.
-- 새 이미지 URI를 task definition의 `backend` 컨테이너에 반영합니다.
-- ECS 서비스 `nammanmu-gyugo-backend`를 클러스터 `nammanmu-dev`에서 새 task definition으로 배포합니다.
-- `wait-for-service-stability: true`로 ECS 서비스 안정화까지 대기합니다.
-- `HEALTH_CHECK_URL` 값이 있으면 curl 기반 smoke test를 실행하고, 비어 있으면 smoke test를 건너뜁니다.
-
-### AWS Role Check: `.github/workflows/aws-role.yml`
-
-- 트리거: `gyugo` 브랜치 push, 수동 `workflow_dispatch`
-- GitHub OIDC 역할 인증이 정상인지 `aws sts get-caller-identity`로 확인합니다.
-
-### Project Automation: `.github/workflows/automation.yml`
-
-- 이슈 생성 시 Slack 알림을 보냅니다.
-- 이슈 할당 시 GitHub Project 상태를 `In Progress`로 이동합니다.
-- PR 생성 시 Slack 알림을 보냅니다.
-- PR merge 또는 이슈 close 시 GitHub Project 상태를 `Done`으로 이동합니다.
-- 필요한 시크릿: `SLACK_WEBHOOK_URL`, `PROJECT_TOKEN`
-
-## AWS 배포 구조 요약
-
-배포 설계는 `nammanmu-relaxed-cicd-aws-architecture.drawio`에 정리되어 있습니다.
-
-- GitHub Actions가 OIDC로 AWS 배포 역할을 Assume합니다.
-- 백엔드 Docker 이미지는 ECR 저장소 `nammanmu/gyugo/backend`에 저장됩니다.
-- ECS Fargate 서비스는 ECR 이미지를 pull해 컨테이너를 실행합니다.
-- Application Load Balancer가 외부 HTTP/HTTPS 요청을 ECS task target group으로 전달합니다.
-- CloudWatch Logs가 ECS task 로그를 수집합니다.
-- 비용 폭탄 방지를 위해 IAM guardrail, Budgets, 태그 기반 비용 추적 설계를 함께 문서화했습니다.
-
-ECS 실행 중 서버 업데이트 후 자동 배포와 사용자 테스트 방법은 [ECS Deployment And Testing Guide](docs/ecs-deployment-testing-guide.md)를 참고하세요.
-
-## 관련 문서
-
-- [Docs Overview](docs/README.md)
-- [ECS Deployment And Testing Guide](docs/ecs-deployment-testing-guide.md)
-- [Documentation CI/CD ECS Work Log](docs/work-logs/2026-06-11-documentation-cicd-ecs.md)
-- [Backend Frontend Integration Work Log](docs/work-logs/2026-06-05-backend-frontend-integration.md)
-- [CI/CD ECS Deployment Concept](docs/concepts/cicd-ecs-deployment.md)
-- [IAM Cost-Bomb Guardrail Policies](docs/concepts/iam-cost-bomb-guardrail-policies.md)
-- [IAM Tag-Based Sandbox Policies](docs/concepts/iam-tag-based-sandbox-policies.md)
-- [Prompt Workflow Hook](docs/prompt-workflow-hook.md)
-
-## 경제지표 학습 기록
-
-### 2026-07-12 - 미국 물가 지표: CPI, Core CPI, PCE
-
-- 학습 목표: CPI와 PCE가 측정하는 범위와 가중치의 차이를 이해하고, 헤드라인·근원 물가를 함께 읽습니다.
-- 핵심 질문: 전월 대비와 전년 대비는 언제 구분해야 하는가? 계절조정 여부와 데이터 개정은 해석을 어떻게 바꾸는가? Fed가 PCE 물가를 중시하는 이유는 무엇인가?
-- 대시보드 적용: 지표 값과 함께 단위, 기준월, 이전치, 출처, 계절조정 여부를 확인하고 AI 요약이 인용한 근거 지표로 연결합니다.
-- 상세 학습 노트: [미국 물가 지표 학습 노트](study/us-economic-indicators-inflation.md)
-
-### 2026-07-26 - 미국 고용 지표: 비농업고용, 실업률, 임금
-
-- 학습 목표: 사업체 조사와 가계 조사의 차이를 이해하고, 비농업고용·실업률·경제활동참가율·임금을 한 묶음으로 읽습니다.
-- 핵심 질문: 고용 증가와 실업률 상승이 동시에 나타날 수 있는가? 이전 두 달의 개정치는 현재 판단을 어떻게 바꾸는가? 임금과 근로시간은 물가 및 소비와 어떻게 연결되는가?
-- 대시보드 적용: 조사 출처와 단위, 기준월, 개정 상태를 구분하고 단일 월 수치보다 3개월 흐름과 지표 간 일관성을 확인합니다.
-- 상세 학습 노트: [미국 고용 지표 학습 노트](study/us-economic-indicators-labor-market.md)
-
-### 2026-07-27 - 미국 GDP와 성장률
-
-- 학습 목표: 명목·실질 GDP와 전기 대비 연율을 구분하고 소비·투자·정부지출·순수출의 성장 기여도를 읽습니다.
-- 핵심 질문: 분기 성장률의 연율 표시는 무엇을 가정하는가? 수입 증가는 왜 GDP 계산에서 차감되는가? 속보치 이후 개정은 판단을 어떻게 바꾸는가?
-- 대시보드 적용: 발표 차수와 데이터 빈티지를 보존하고 성장률, 수준, 기여도를 서로 다른 단위로 표시합니다.
-- 상세 학습 노트: [미국 GDP 성장률 학습 노트](study/us-economic-indicators-gdp-growth.md)
-
-### 2026-07-28 - 미국 소비지출과 소매판매
-
-- 학습 목표: BEA 개인소비지출과 Census 소매판매의 범위·발표 속도·물가 반영 차이를 이해합니다.
-- 핵심 질문: 명목 소매판매 증가는 실제 판매량 증가인가? 서비스 소비는 어디에서 확인하는가? 속보 소매판매 개정은 어떻게 관리하는가?
-- 대시보드 적용: 명목·실질, 재화·서비스, 속보·개정 상태를 구분하고 소득·저축률과 함께 소비 지속성을 판단합니다.
-- 상세 학습 노트: [미국 소비지표 학습 노트](study/us-economic-indicators-consumer-spending-retail-sales.md)
-
-### 2026-07-29 - 미국 산업생산과 설비가동률
-
-- 학습 목표: 제조업·광업·유틸리티 생산과 설비가동률을 구분하고 산업 경기의 폭과 공급 여력을 읽습니다.
-- 핵심 질문: 산업생산 지수와 GDP는 범위가 어떻게 다른가? 가동률 상승은 수요 증가인가 공급 축소인가? 날씨와 자동차 생산은 월간 수치를 어떻게 흔드는가?
-- 대시보드 적용: 전체·제조업·업종별 생산을 분리하고 예비치, 월간 개정과 연례 벤치마크를 데이터 빈티지로 관리합니다.
-- 상세 학습 노트: [미국 생산지표 학습 노트](study/us-economic-indicators-industrial-production-capacity.md)
-
-### 2026-07-30 - 미국 정책금리와 국채 수익률곡선
-
-- 학습 목표: FOMC 목표범위, 실효 연방기금금리, 명목·실질 국채금리와 장단기 금리차를 구분합니다.
-- 핵심 질문: 장기금리는 기준금리 외에 무엇을 반영하는가? 실질금리와 기대인플레이션은 어떻게 나누는가? 역전된 수익률곡선은 경기침체 시점을 확정하는가?
-- 대시보드 적용: 금리 종류와 만기, 관측 시각, 단위와 출처를 저장하고 금리차를 동일 시점 자료로 계산합니다.
-- 상세 학습 노트: [미국 금리지표 학습 노트](study/us-economic-indicators-interest-rates-yield-curve.md)
-
-### 2026-07-31 - 미국 무역수지와 경상수지
-
-- 학습 목표: 상품·서비스 무역수지와 소득·이전까지 포함한 경상수지를 구분하고 수출입의 가격·물량 효과를 읽습니다.
-- 핵심 질문: 무역적자 확대는 항상 성장 악화인가? 달러와 미국 내수는 수출입에 어떻게 작용하는가? 관세 전 선구매와 재고는 월간 수치를 어떻게 왜곡하는가?
-- 대시보드 적용: 수출·수입·수지를 각각 저장하고 상품·서비스, 명목·실질, 월간·분기 자료를 구분합니다.
-- 상세 학습 노트: [미국 대외거래지표 학습 노트](study/us-economic-indicators-trade-balance-current-account.md)
-
-### 2026-08-01 - 미국 경기순환 종합 읽기
-
-- 학습 목표: 성장·고용·물가·소비·생산·금리·무역의 상태와 모멘텀을 결합해 근거가 추적되는 경기판단을 만듭니다.
-- 핵심 질문: 지표가 엇갈릴 때 무엇을 우선하는가? 침체는 실질 GDP 두 분기 감소만으로 정의되는가? 최신 개정치와 발표 당시 판단을 어떻게 함께 보존하는가?
-- 대시보드 적용: 깊이·확산·지속기간, 최신성·신뢰도를 분리 평가하고 AI 요약에 반대 근거와 불확실성을 포함합니다.
-- 상세 학습 노트: [미국 경기순환 종합 학습 노트](study/us-economic-indicators-business-cycle-synthesis.md)
-
-### 2026-08-08 - 미국 주택시장 지표
-
-- 학습 목표: 건축허가·주택착공·완공·신규주택판매를 공급 파이프라인으로 연결하고 SAAR와 실제 월간 건수를 구분합니다.
-- 핵심 질문: 허가 증가는 언제 실제 착공으로 이어지는가? 단독주택과 다세대주택의 방향이 다를 때 전체 수치를 어떻게 설명하는가? 속보치 개정과 표본오차를 어떻게 다루는가?
-- 대시보드 적용: 발표일·대상월·단위·계절조정·연율화·주택 유형·개정 상태를 저장하고 모기지금리와 재고를 반대 근거로 함께 제시합니다.
-- 상세 학습 노트: [미국 주택시장 지표 학습 노트](study/us-economic-indicators-housing-market.md)
-
-### 2026-08-09 - 미국 ISM 제조업·서비스업 PMI
-
-- 학습 목표: PMI가 실제 생산 증가율이 아닌 확산지수임을 이해하고 제조업·서비스업의 기준선 위치와 변화 속도를 구분합니다.
-- 핵심 질문: 50 위에서 하락하거나 50 아래에서 상승하면 어떻게 표현하는가? 신규주문은 현재 활동보다 먼저 움직이는가? 공급자배송 지연은 수요 강세인가 공급 충격인가?
-- 대시보드 적용: 부문·기준선·방향·모멘텀·하위지수를 저장하고 산업생산·고용·물가 자료로 설문 신호를 교차검증합니다.
-- 상세 학습 노트: [미국 ISM PMI 학습 노트](study/us-economic-indicators-ism-pmi.md)
-
-### 2026-08-10 - 미국 소비자신뢰·소비자심리 지표
-
-- 학습 목표: Conference Board의 소비자신뢰지수와 Michigan 소비자심리지수의 질문·구성·기준 차이를 이해하고 각 계열 내부의 방향을 읽습니다.
-- 핵심 질문: 현재상황과 기대는 왜 엇갈리는가? 심리가 약한데 실제 소비가 강할 수 있는가? 기대인플레이션은 실제 물가와 어떻게 다른가?
-- 대시보드 적용: 발표기관·하위지수·기준기간·조사 마감일·발표 단계를 저장하고 서로 다른 지수의 절대 수준을 직접 비교하지 않습니다.
-- 상세 학습 노트: [미국 소비자신뢰·소비자심리 지표 학습 노트](study/us-economic-indicators-consumer-sentiment.md)
-
-### 2026-08-11 - 미국 금융여건 지표
-
-- 학습 목표: 회사채 신용스프레드, 은행 대출태도 조사 SLOOS, Chicago Fed NFCI를 시장가격·은행행동·종합여건의 세 축으로 읽습니다.
-- 핵심 질문: 국채금리 하락 중 스프레드 확대는 무엇을 뜻하는가? 대출 둔화는 공급과 수요 중 어디서 발생했는가? NFCI의 0과 양수·음수는 어떻게 해석하는가?
-- 대시보드 적용: 등급·대출 유형·단위·빈도·최신성을 저장하고 NFCI와 개별 시장지표의 중복 신호를 독립 충격으로 이중계산하지 않습니다.
-- 상세 학습 노트: [미국 금융여건 지표 학습 노트](study/us-economic-indicators-financial-conditions.md)
-
-### 2026-08-12 - 미국 신규 실업수당 청구
-
-- 학습 목표: 신규·계속 청구와 보험 적용 실업률을 구분하고 주간 노동시장 악화 신호를 읽습니다.
-- 핵심 질문: 한 주 급등은 추세인가? 신규 청구와 계속 청구가 함께 오르는가? 휴일·재해·처리 적체가 수치를 흔들었는가?
-- 대시보드 적용: 기준 주, 4주 이동평균, 계절조정, 주별 확산과 개정 상태를 저장합니다.
-- 상세 학습 노트: [미국 신규 실업수당 청구 학습 노트](study/us-economic-indicators-initial-unemployment-claims.md)
-
-### 2026-08-13 - 미국 JOLTS 구인과 노동이동
-
-- 학습 목표: 구인·채용·자발적 퇴직·해고를 분리해 노동 수요와 이직 역동성을 읽습니다.
-- 핵심 질문: 구인 감소는 정상화인가 해고 증가인가? 채용과 퇴직률은 노동자의 협상력을 어떻게 보여주는가?
-- 대시보드 적용: 수준과 비율, 업종, 예비·개정 상태를 구분하고 고용·임금·실업수당과 교차검증합니다.
-- 상세 학습 노트: [미국 JOLTS 학습 노트](study/us-economic-indicators-jolts.md)
-
-### 2026-08-14 - 미국 생산자물가지수 PPI
-
-- 학습 목표: 생산자 판매가격을 최종수요와 중간수요 단계로 나누고 CPI·PCE와의 차이를 이해합니다.
-- 핵심 질문: 비용 압력이 생산 단계 전반에 확산되는가? 기업은 비용을 소비자가격에 전가하는가, 마진으로 흡수하는가?
-- 대시보드 적용: 수요 단계, 구성요소, 변화기간, 가중치와 예비치 여부를 저장합니다.
-- 상세 학습 노트: [미국 생산자물가지수 학습 노트](study/us-economic-indicators-producer-prices.md)
-
-### 2026-08-15 - 미국 내구재와 공장주문
-
-- 학습 목표: 신규주문·출하·미처리주문·재고의 제조 파이프라인과 핵심 자본재를 읽습니다.
-- 핵심 질문: 항공기 주문이 헤드라인을 왜곡했는가? 설비투자 의향이 실제 출하로 이어지는가?
-- 대시보드 적용: 운송·국방 제외 규칙과 속보·전체 발표, 명목 단위와 개정을 명시합니다.
-- 상세 학습 노트: [미국 내구재와 공장주문 학습 노트](study/us-economic-indicators-durable-goods-factory-orders.md)
-
-### 2026-08-16 - 미국 기업재고와 재고판매비율
-
-- 학습 목표: 제조·도매·소매의 재고와 판매를 결합해 계획된 축적과 비의도적 축적을 구분합니다.
-- 핵심 질문: 재고 증가는 수요 대응인가 판매 부진인가? 명목 재고와 GDP 실질 재고투자는 어떻게 다른가?
-- 대시보드 적용: 부문별 재고·판매·비율, 가격조정 여부와 데이터 빈티지를 함께 저장합니다.
-- 상세 학습 노트: [미국 기업재고 학습 노트](study/us-economic-indicators-business-inventories.md)
-
-### 2026-08-17 - 미국 건설지출
-
-- 학습 목표: 현장에 실제 시공된 공사의 가치를 주거·비주거·공공 부문으로 나눠 읽습니다.
-- 핵심 질문: 허가·착공은 언제 지출로 이어지는가? 명목 증가는 물량 증가인가 공사비 상승인가?
-- 대시보드 적용: 소유·용도, SAAR, 명목 단위, 개정과 신뢰구간을 보존합니다.
-- 상세 학습 노트: [미국 건설지출 학습 노트](study/us-economic-indicators-construction-spending.md)
-
-### 2026-08-18 - 미국 생산성과 단위노동비용
-
-- 학습 목표: 산출·노동시간·시간당 보수의 관계로 생산성과 산출 한 단위당 노동비용을 이해합니다.
-- 핵심 질문: 임금 상승을 생산성이 상쇄하는가? 분기 급등락은 구조적 변화인가 경기적 구성 효과인가?
-- 대시보드 적용: 부문, 변화기간, 연율, 예비·벤치마크 개정과 산식 구성요소를 저장합니다.
-- 상세 학습 노트: [미국 생산성과 단위노동비용 학습 노트](study/us-economic-indicators-productivity-unit-labor-costs.md)
-
-### 2026-08-19 - 미국 경기선행지수 LEI
-
-- 학습 목표: 열 개 선행 구성요소의 지속성·확산·기여를 통해 경기 전환 위험을 읽습니다.
-- 핵심 질문: 약화가 몇 달 지속됐는가? 금융 신호뿐 아니라 실물 선행지표도 악화됐는가?
-- 대시보드 적용: 6개월 변화, 확산지수, 구성요소 기여와 방법론 버전을 보존하고 중복 가중을 피합니다.
-- 상세 학습 노트: [미국 경기선행지수 학습 노트](study/us-economic-indicators-leading-index.md)
-
-### 2026-08-20 - 미국 지역 연은 제조업 설문
-
-- 학습 목표: 지역별 확산지수의 현재·미래 활동, 주문, 고용과 가격 신호를 전국 자료와 연결합니다.
-- 핵심 질문: 한 지역의 급등락이 다른 지역에도 확산되는가? 현재여건과 6개월 전망은 왜 엇갈리는가?
-- 대시보드 적용: 지역, 0 기준, 현재·미래 구분, 표본과 조사기간을 저장하고 ISM·산업생산으로 검증합니다.
-- 상세 학습 노트: [미국 지역 연은 제조업 설문 학습 노트](study/us-economic-indicators-regional-fed-surveys.md)
-
-### 2026-08-21 - 미국 통화와 은행신용
-
-- 학습 목표: 통화량과 상업은행 대차대조표를 구분하고 부문·은행 규모별 대출 흐름을 읽습니다.
-- 핵심 질문: 대출 둔화는 공급 긴축인가 수요 약화인가? 예금·증권·차입 변화는 자금조달을 어떻게 보여주는가?
-- 대시보드 적용: H.6/H.8, 기관군, 계절조정·연율·구조변화 조정과 정의 버전을 저장합니다.
-- 상세 학습 노트: [미국 통화와 은행신용 학습 노트](study/us-economic-indicators-bank-credit.md)
-
-### 2026-08-22 - 미국 고용비용지수 ECI
-
-- 학습 목표: 산업·직종 구성을 고정한 임금·급여와 복리후생 비용의 변화를 읽습니다.
-- 핵심 질문: 총보상 압력은 임금과 복리후생 중 어디에서 왔는가? 평균시간당임금과 ECI가 다른 이유는 무엇인가?
-- 대시보드 적용: 소유부문·산업·직종·보상 구성, 변화기간과 계절조정 여부를 저장합니다.
-- 상세 학습 노트: [미국 고용비용지수 학습 노트](study/us-economic-indicators-employment-cost-index.md)
-
-### 2026-08-23 - 미국 수입·수출물가지수
-
-- 학습 목표: 교역 가격을 통해 환율·원자재·해외 생산비가 미국 물가와 교역조건에 전달되는 경로를 읽습니다.
-- 핵심 질문: 수입물가 변화는 연료 때문인가? 환율 변화가 계약가격과 소비자물가에 얼마나 전가됐는가?
-- 대시보드 적용: 수입·수출, 품목 분류, 교역 가중치, 변화기간과 지수 기준시점을 보존합니다.
-- 상세 학습 노트: [미국 수입·수출물가지수 학습 노트](study/us-economic-indicators-import-export-prices.md)
-
-### 2026-08-24 - 미국 소비자신용과 부채상환부담
-
-- 학습 목표: 회전·비회전 소비자신용과 가처분소득 대비 원리금 부담을 구분합니다.
-- 핵심 질문: 신용 증가는 소비 여력 확대인가 재무 압박인가? 금리·연체·상환부담은 함께 어떻게 변하는가?
-- 대시보드 적용: 신용 유형·보유기관·잔액·흐름·연율 증가율과 주택담보대출 제외 범위를 저장합니다.
-- 상세 학습 노트: [미국 소비자신용 학습 노트](study/us-economic-indicators-consumer-credit-debt-service.md)
-
-### 2026-08-25 - 미국 연방 재정수지와 국가부채
-
-- 학습 목표: 연방정부의 세입·지출·적자와 국채 조달을 회계연도와 현금흐름 기준으로 이해합니다.
-- 핵심 질문: 단월 적자는 계절적 시점 효과인가? 순이자지출은 부채 규모와 재발행 금리에 어떻게 반응하는가?
-- 대시보드 적용: 월간·회계연도 누계, 세입·지출 항목, 회계 기준과 달력 이동을 보존합니다.
-- 상세 학습 노트: [미국 연방 재정수지 학습 노트](study/us-economic-indicators-federal-budget-debt.md)
-
-### 2026-08-26 - 미국 기업이익과 GDI
-
-- 학습 목표: 소득 측면 GDI로 GDP를 교차검증하고 현재생산 기업이익의 국민계정 조정을 이해합니다.
-- 핵심 질문: GDP와 GDI는 왜 단기에 엇갈리는가? IVA·CCAdj를 적용한 기업이익은 재무제표 순이익과 어떻게 다른가?
-- 대시보드 적용: 발표 차수, 회계 기준, 조정 유형, 부문·지역과 데이터 빈티지를 저장합니다.
-- 상세 학습 노트: [미국 기업이익과 GDI 학습 노트](study/us-economic-indicators-corporate-profits-gdi.md)
-
-## 앞으로의 작업
-
-- 운영용 ALB DNS가 확정되면 `HEALTH_CHECK_URL`에 `/api/status` 같은 확인 URL을 설정합니다.
-- ECS cluster/service/task definition/container 이름이 변경되면 `deploy.yml`과 문서 값을 함께 갱신합니다.
-- 운영용 인증 저장소를 추가합니다.
-- RAG embedding 생성, chunking job, semantic search API를 구현합니다.
-- MCP, AI Agent 기능의 상세 설계를 추가합니다.
-
-## 게시판, PostgreSQL, RAG 구성
-
-- 게시글 CRUD, 댓글 작성/수정/삭제, 태그 필터, 키워드 검색 API를 추가했습니다.
-- 프론트엔드 홈 화면은 검색, 태그 필터, 목록, 상세, 작성/수정, 댓글을 한 화면에서 다루는 게시판 작업 화면으로 바뀌었습니다.
-- PostgreSQL datasource는 `DB_URL`, `DB_USERNAME`, `DB_PASSWORD` 환경 변수로 설정합니다.
-- 로컬 PostgreSQL에서 RDS PostgreSQL로 전환할 때는 datasource endpoint와 자격 증명만 바꾸는 구조입니다.
-- Flyway migration `V1__create_board_and_rag_schema.sql`에 게시판 테이블과 RAG 확장용 `rag_documents`, `rag_chunks`, `rag_index_jobs` 테이블을 포함했습니다.
-- `rag_chunks.embedding`은 `pgvector`의 `vector(1536)` 타입을 기준으로 설계했습니다.
-- 학습용 정리는 `study/postgresql-rds-rag.md`, `study/board-crud-api.md`에 있습니다.
-
-## 2026-07-05 - Sanctions And Secondary Effects
-
-- Study focus: Study how economic sanctions work as tools of statecraft and how secondary sanctions can influence firms and governments outside the direct dispute. This matters because sanctions connect finance, trade, security policy, and alliance coordination.
-- Key questions: What makes sanctions effective or ineffective? How do secondary sanctions change incentives for third-party firms and banks? How do states balance coercion, humanitarian risk, and alliance unity?
-- Terms to know: primary sanctions, secondary sanctions, export controls, correspondent banking, compliance risk, sanctions evasion
-
-## 2026-07-07 - Maritime Chokepoints And Supply Chain Security
-
-- Study focus: Study how narrow sea lanes and port networks shape the costs and risks of global trade. This matters because shipping disruptions can connect regional security disputes with inflation, energy prices, inventory planning, and alliance coordination.
-- Key questions: Which chokepoints matter most for energy and manufactured goods? How do naval presence, insurance costs, and rerouting decisions affect trade flows? What tools can governments use to reduce supply-chain exposure without overcorrecting?
-- Terms to know: chokepoints, sea lines of communication, rerouting, marine insurance, strategic reserves, supply-chain resilience
+더 깊게 살펴보려면 [문서 허브](docs/README.md), [구현 개념](docs/concepts/README.md), [작업 기록](docs/work-logs), [AI 학습 경로](study/study/README.md)를 참고하세요. 개편 전 README와 구조는 [백업 안내](docs/backups/2026-09-16-readme/BACKUP.md)에 보존했습니다.
