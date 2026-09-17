@@ -383,3 +383,9 @@ python -m pytest tests
 - 핵심 개념: FRED의 빈티지 날짜 목록은 새 값이나 개정으로 계열이 바뀐 날짜를 다룬다. 값이 바뀌지 않은 발표일은 제외될 수 있다.
 - 프로젝트 적용 아이디어: 발표 일정과 값의 변경 이력을 별도로 관리하는 방안을 검토한다.
 - 참고 자료: [FRED 빈티지 날짜 API](https://fred.stlouisfed.org/docs/api/fred/series_vintagedates.html)
+
+### 2026-09-17 - AI 화면과 실행 서비스의 책임
+
+- 핵심 개념: 프로젝트의 화면·Spring·Python Worker가 각각 표시, 데이터·권한 관리, Agent 실행을 맡는 구조를 따라 읽는다.
+- 프로젝트 적용 아이디어: 오류를 확인할 때 화면 요청부터 Worker 응답까지 경계를 나눠 관찰하는 절차를 정리한다.
+- 참고 자료: [현재 AI 시스템 지도](study/study/00-current-ai-system-map.md)
