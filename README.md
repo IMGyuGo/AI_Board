@@ -389,3 +389,9 @@ python -m pytest tests
 - 핵심 개념: 프로젝트의 화면·Spring·Python Worker가 각각 표시, 데이터·권한 관리, Agent 실행을 맡는 구조를 따라 읽는다.
 - 프로젝트 적용 아이디어: 오류를 확인할 때 화면 요청부터 Worker 응답까지 경계를 나눠 관찰하는 절차를 정리한다.
 - 참고 자료: [현재 AI 시스템 지도](study/study/00-current-ai-system-map.md)
+
+### 2026-09-18 - 답변과 근거의 분리
+
+- 핵심 개념: 자연스러운 문장과 검증 가능한 근거는 별개의 대상이다. 프로젝트의 근거 ID·출처 검증 경로를 살펴본다.
+- 프로젝트 적용 아이디어: 답변 표시와 출처 확인을 독립적으로 점검하는 검증 항목을 검토한다.
+- 참고 자료: [임베딩과 근거 검증](study/study/04-embeddings-pgvector-and-evidence.md)
